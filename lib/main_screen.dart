@@ -1,10 +1,11 @@
 // main_screen.dart
 import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/features/account/presentation/pages/account_screen.dart';
-import 'package:buenro_hotels/features/favourites/presentation/pages/favourites_screen';
 import 'package:buenro_hotels/features/hotels/presentation/pages/hotels_screen.dart';
 import 'package:buenro_hotels/features/overview/presentation/pages/overview_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'features/favourites/presentation/pages/favourites_screen.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {

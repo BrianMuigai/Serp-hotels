@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class BuenroAppTheme extends StatelessWidget {
-  const BuenroAppTheme({super.key});
+  final Widget child;
+  const BuenroAppTheme({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class BuenroAppTheme extends StatelessWidget {
           ),
         ),
       ),
+      home: child,
     );
   }
 }
