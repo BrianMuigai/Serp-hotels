@@ -6,3 +6,9 @@ abstract class HotelsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ListHotelsEvent extends HotelsEvent {
+  final GetHotelsParams params;
+
+  const ListHotelsEvent({required this.params});
+}

@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:buenro_hotels/di/injector.config.dart';
+import 'package:buenro_hotels/core/di/injector.config.dart';
 
 final getIt = GetIt.instance;
 

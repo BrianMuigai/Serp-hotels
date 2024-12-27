@@ -1,7 +1,7 @@
 import 'package:buenro_hotels/common/helpers/app_router.dart';
 import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/common/widgets/global_bloc_observer.dart';
-import 'package:buenro_hotels/di/injector.dart';
+import 'package:buenro_hotels/core/di/injector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,8 +26,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: AppStrings.appName,
-      routerConfig: _appRouter.config(),
-    );
+        debugShowCheckedModeBanner: !kReleaseMode,
+        title: AppStrings.appName,
+        routerConfig: _appRouter.config(),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: Colors.white,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
+            selectedIconTheme: IconThemeData(size: 28),
+            unselectedIconTheme: IconThemeData(size: 24),
+            type: BottomNavigationBarType.fixed,
+          ),
+        ));
   }
 }
