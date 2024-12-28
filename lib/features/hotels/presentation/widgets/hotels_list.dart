@@ -51,14 +51,8 @@ class HotelsList extends StatelessWidget {
         return ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(height: 10),
           itemCount: hotels.properties.length,
-          itemBuilder: (context, index) => PropertyCard(
-            hotelImages: hotels.properties[index].images,
-            name: hotels.properties[index].name,
-            price: hotels.properties[index].ratePerNight.lowest,
-            dates:
-                '${hotels.properties[index].checkInTime} - ${hotels.properties[index].checkOutTime ?? ''}',
-            locationRating: '${hotels.properties[index].locationRating}',
-          ),
+          itemBuilder: (context, index) =>
+              PropertyCard(hotel: hotels.properties[index]),
         );
       }
       return Center(child: Text(AppStrings.noData));

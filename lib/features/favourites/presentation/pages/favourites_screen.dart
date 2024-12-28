@@ -1,13 +1,58 @@
+import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
+import 'package:buenro_hotels/features/favourites/presentation/widgets/favourites_list.dart';
+import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FavouritesScreen extends StatelessWidget {
+class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({super.key});
+
+  @override
+  State<FavouritesScreen> createState() => _FavouritesScreenState();
+}
+
+class _FavouritesScreenState extends State<FavouritesScreen> {
+  final List<PropertyModel> favs = [];
+  @override
+  void initState() {
+    super.initState();
+    context.read<FavouritesBloc>().add(ListFavouritesEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Favourites')),
-      body: Center(child: Text('Favourites Screen')),
+      appBar: AppBar(title: Text(AppStrings.favourites)),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: BlocListener<FavouritesBloc, FavouritesState>(
+            listener: (context, state) {
+              if (state is AddFavouritesError) {
+                showAdaptiveDialog(
+                    context: context,
+                    builder: (context) {
+                      return Center(
+                        child: Text(state.error),
+                      );
+                    });
+              } else if (state is LoadFavouritesSuccess ||
+                  state is AddFavouritesSuccess ||
+                  state is DeleteFavouritesSuccess) {
+                setState(() {
+                  favs.clear();
+                  if (state is LoadFavouritesSuccess) {
+                    favs.addAll(state.favs);
+                  } else if (state is AddFavouritesSuccess) {
+                    favs.addAll(state.favs);
+                  } else if (state is DeleteFavouritesSuccess) {
+                    favs.addAll(state.favs);
+                  }
+                });
+              }
+            },
+            child: FavouritesList(favourites: favs)),
+      ),
     );
   }
 }

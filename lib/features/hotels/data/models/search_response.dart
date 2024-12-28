@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_response.g.dart';
@@ -149,7 +150,7 @@ class BrandChild {
 }
 
 @JsonSerializable()
-class PropertyModel {
+class PropertyModel extends Equatable {
   final String type;
   final String name;
   final String? link;
@@ -182,7 +183,7 @@ class PropertyModel {
   @JsonKey(name: 'serpapi_property_details_link')
   final String serpapiPropertyDetailsLink;
 
-  PropertyModel({
+  const PropertyModel({
     required this.type,
     required this.name,
     required this.link,
@@ -207,6 +208,9 @@ class PropertyModel {
   factory PropertyModel.fromJson(Map<String, dynamic> json) =>
       _$PropertyModelFromJson(json);
   Map<String, dynamic> toJson() => _$PropertyModelToJson(this);
+
+  @override
+  List<Object?> get props => [name, serpapiPropertyDetailsLink];
 }
 
 @JsonSerializable()
