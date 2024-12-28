@@ -13,4 +13,5 @@ class AppStrings {
   static String anytime = 'Anytime';
   static String hotelsHeader = "NOW, THE WORLD'S\nYOUR HOME";
   static String error = 'Error';
+  static String unableToAddToFavs = 'Unable to add to favs';
 }

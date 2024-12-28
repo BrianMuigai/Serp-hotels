@@ -2,6 +2,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/core/di/injector.dart';
 import 'package:buenro_hotels/features/account/presentation/pages/account_screen.dart';
+import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
 import 'package:buenro_hotels/features/hotels/presentation/pages/hotels_screen.dart';
 import 'package:buenro_hotels/features/overview/presentation/pages/overview_screen.dart';
@@ -40,6 +41,7 @@ class _MainScreenState extends State<MainScreen> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => getIt<HotelsBloc>()),
+        BlocProvider(create: (context) => getIt<FavouritesBloc>())
       ],
       child: Scaffold(
         body: _screens[_currentIndex],

@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesManager {
   final SharedPreferences _sharedPreferences;
 
+  static String favourites = 'favourites';
+
   SharedPreferencesManager(this._sharedPreferences);
 
   Future<bool> putBool(String key, bool value) =>

@@ -46,10 +46,10 @@ class ClientFailure extends Failure {
   String toString() => error;
 }
 
-class PermissionFailure extends Failure {
+class GeneralFailure extends Failure {
   final String error;
 
-  const PermissionFailure({required this.error});
+  const GeneralFailure({required this.error});
 
   @override
   List<Object?> get props => [error];

@@ -1,0 +1,50 @@
+import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
+import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
+import 'package:buenro_hotels/features/hotels/presentation/widgets/property_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class FavouritesList extends StatelessWidget {
+  final List<PropertyModel> favourites;
+  const FavouritesList({super.key, required this.favourites});
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator.adaptive(
+      onRefresh: () async {
+        context.read<FavouritesBloc>().add(ListFavouritesEvent());
+      },
+      child: BlocBuilder<FavouritesBloc, FavouritesState>(
+          builder: (context, state) {
+        if (state is LoadFavouritesError) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  state.error,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+              IconButton(
+                  onPressed: () =>
+                      context.read<FavouritesBloc>().add(ListFavouritesEvent()),
+                  icon: Icon(Icons.replay_outlined))
+            ],
+          );
+        }
+        if (favourites.isEmpty) {
+          return Center(child: Text(AppStrings.noData));
+        }
+        return ListView.separated(
+          separatorBuilder: (context, index) => const SizedBox(height: 10),
+          itemCount: favourites.length,
+          itemBuilder: (context, index) =>
+              PropertyCard(hotel: favourites[index]),
+        );
+      }),
+    );
+  }
+}
