@@ -5,7 +5,12 @@ import 'package:buenro_hotels/common/helpers/app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: MainRoute.page, initial: true),
+        AutoRoute(page: MainRoute.page, initial: true, children: [
+          AutoRoute(page: OverviewRoute.page),
+          AutoRoute(page: HotelsRoute.page),
+          AutoRoute(page: FavouritesRoute.page),
+          AutoRoute(page: AccountRoute.page)
+        ]),
         AutoRoute(page: FullImageRoute.page)
       ];
 }
