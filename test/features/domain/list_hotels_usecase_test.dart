@@ -1,17 +1,18 @@
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
 import 'package:buenro_hotels/core/errors/failures.dart';
-import 'package:buenro_hotels/features/hotels/data/models/hotel.dart';
 import 'package:buenro_hotels/features/hotels/data/models/query_hotel_model.dart';
+import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/domain/repositories/hotels_repository.dart';
 import 'package:buenro_hotels/features/hotels/domain/usecases/list_hotels_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-// Mock class for HotelsRepository
-class MockHotelsRepository extends Mock implements HotelsRepository {}
+import 'list_hotels_usecase_test.mocks.dart';
 
+@GenerateMocks([HotelsRepository])
 void main() {
   late MockHotelsRepository mockHotelsRepository;
   late ListHotelsUsecase listHotelsUsecase;
@@ -44,19 +45,19 @@ void main() {
       checkOutDate: formatDateObj(addDays(1, getCurrentDateTime())),
     );
 
-    final hotelList = [
-      Hotel(name: 'Hotel A'),
-      Hotel(name: 'Hotel B'),
-    ];
+    final response = SearchResponse(
+        properties: [],
+        pagination: SerpApiPagination(
+            currentFrom: 1, currentTo: 10, nextPageToken: 'TE'));
 
     when(mockHotelsRepository.listHotels(queryModel))
-        .thenAnswer((_) async => Right(hotelList));
+        .thenAnswer((_) async => Right(response));
 
     // Act
     final result = await listHotelsUsecase(params);
 
     // Assert
-    expect(result, Right(hotelList));
+    expect(result, Right(response));
     verify(mockHotelsRepository.listHotels(queryModel)).called(1);
     verifyNoMoreInteractions(mockHotelsRepository);
   });

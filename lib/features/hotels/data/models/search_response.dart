@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'search_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class SearchResponse {
   @JsonKey(name: 'search_metadata')
   final SearchMetadata? searchMetadata;
@@ -17,10 +17,10 @@ class SearchResponse {
   final SerpApiPagination pagination;
 
   SearchResponse({
-    required this.searchMetadata,
-    required this.searchParameters,
-    required this.searchInformation,
-    required this.brands,
+    this.searchMetadata,
+    this.searchParameters,
+    this.searchInformation,
+    this.brands,
     required this.properties,
     required this.pagination,
   });

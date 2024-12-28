@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'query_hotel_model.g.dart';
 
 @JsonSerializable()
-class QueryHotelModel {
+class QueryHotelModel extends Equatable {
   final String engine;
   final String q;
   final String gl;
@@ -19,7 +20,7 @@ class QueryHotelModel {
   factory QueryHotelModel.fromJson(Map<String, dynamic> json) =>
       _$QueryHotelModelFromJson(json);
 
-  QueryHotelModel({
+  const QueryHotelModel({
     required this.engine,
     required this.q,
     required this.gl,
@@ -27,11 +28,15 @@ class QueryHotelModel {
     required this.currency,
     required this.checkInDate,
     required this.checkOutDate,
-    required this.nextPageToken,
+    this.nextPageToken,
   });
 
   Map<String, dynamic> toJson() => _$QueryHotelModelToJson(this);
 
   static List<QueryHotelModel> fromJsonList(dynamic response) =>
       (response as List).map((x) => QueryHotelModel.fromJson(x)).toList();
+
+  @override
+  List<Object?> get props =>
+      [engine, q, gl, hl, currency, checkInDate, checkOutDate];
 }
