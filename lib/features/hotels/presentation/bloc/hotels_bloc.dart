@@ -13,10 +13,13 @@ part 'hotels_state.dart';
 @injectable
 class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final ListHotelsUsecase _listHotelsUsecase;
-  SearchResponse? hotels;
+  final List<PropertyModel> hotels = [];
+  late SerpApiPagination pagination;
+  bool isLoadingMore = false;
 
   HotelsBloc(this._listHotelsUsecase) : super(HotelsInitial()) {
     on<ListHotelsEvent>(_listHotels);
+    on<LoadMoreHotelsEvent>(_loadMore);
   }
 
   FutureOr<void> _listHotels(
@@ -25,10 +28,32 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     final response = await _listHotelsUsecase.call(event.params);
     emit(response.fold(
       (error) => ListHotelsError(error: error.toString()),
-      (hotels) {
-        this.hotels = hotels;
+      (response) {
+        hotels.clear();
+        hotels.addAll(response.properties);
+        pagination = response.pagination;
         return ListHotelsSuccess(hotels: hotels);
       },
     ));
+  }
+
+  FutureOr<void> _loadMore(
+      LoadMoreHotelsEvent event, Emitter<HotelsState> emit) async {
+    emit(LoadingMore());
+    isLoadingMore = true;
+    final params =
+        event.params.copyWith(nextPageToken: pagination.nextPageToken);
+    final response = await _listHotelsUsecase.call(params);
+    emit(response.fold(
+      (error) => ListHotelsSuccess(hotels: hotels),
+      (more) {
+        hotels.addAll(more.properties);
+        pagination.nextPageToken = more.pagination.nextPageToken;
+        pagination.currentFrom = more.pagination.currentFrom;
+        pagination.currentTo = more.pagination.currentTo;
+        return ListHotelsSuccess(hotels: hotels);
+      },
+    ));
+    isLoadingMore = true;
   }
 }

@@ -21,6 +21,7 @@ class GetHotelsParams extends Equatable {
   final String currency;
   final String checkInDate;
   final String checkOutDate;
+  final String? nextPageToken;
 
   const GetHotelsParams(
       {this.engine = 'google_hotels',
@@ -29,7 +30,30 @@ class GetHotelsParams extends Equatable {
       this.hl = 'en',
       this.currency = 'USD',
       required this.checkInDate,
-      required this.checkOutDate});
+      required this.checkOutDate,
+      this.nextPageToken});
+
+  GetHotelsParams copyWith({
+    String? engine,
+    String? q,
+    String? gl,
+    String? hl,
+    String? currency,
+    String? checkInDate,
+    String? checkOutDate,
+    String? nextPageToken,
+  }) {
+    return GetHotelsParams(
+      engine: engine ?? this.engine,
+      q: q ?? this.q,
+      gl: gl ?? this.gl,
+      hl: hl ?? this.hl,
+      currency: currency ?? this.currency,
+      checkInDate: checkInDate ?? this.checkInDate,
+      checkOutDate: checkOutDate ?? this.checkOutDate,
+      nextPageToken: nextPageToken ?? this.nextPageToken,
+    );
+  }
 
   @override
   List<Object?> get props =>

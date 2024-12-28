@@ -13,13 +13,17 @@ class SearchResponse {
   final SearchInformation searchInformation;
   final List<Brand> brands;
   final List<PropertyModel> properties;
+  @JsonKey(name: 'serpapi_pagination')
+  final SerpApiPagination pagination;
 
-  SearchResponse(
-      {required this.searchMetadata,
-      required this.searchParameters,
-      required this.searchInformation,
-      required this.brands,
-      required this.properties});
+  SearchResponse({
+    required this.searchMetadata,
+    required this.searchParameters,
+    required this.searchInformation,
+    required this.brands,
+    required this.properties,
+    required this.pagination,
+  });
 
   factory SearchResponse.fromJson(Map<String, dynamic> json) =>
       _$SearchResponseFromJson(json);
@@ -301,4 +305,24 @@ class HotelImage {
   factory HotelImage.fromJson(Map<String, dynamic> json) =>
       _$HotelImageFromJson(json);
   Map<String, dynamic> toJson() => _$HotelImageToJson(this);
+}
+
+@JsonSerializable()
+class SerpApiPagination {
+  @JsonKey(name: 'current_from')
+  int currentFrom;
+  @JsonKey(name: 'current_to')
+  int currentTo;
+  @JsonKey(name: 'next_page_token')
+  String nextPageToken;
+
+  SerpApiPagination(
+      {required this.currentFrom,
+      required this.currentTo,
+      required this.nextPageToken});
+
+  factory SerpApiPagination.fromJson(Map<String, dynamic> json) =>
+      _$SerpApiPaginationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SerpApiPaginationToJson(this);
 }

@@ -12,3 +12,9 @@ class ListHotelsEvent extends HotelsEvent {
 
   const ListHotelsEvent({required this.params});
 }
+
+class LoadMoreHotelsEvent extends HotelsEvent {
+  final GetHotelsParams params;
+
+  const LoadMoreHotelsEvent({required this.params});
+}

@@ -13,18 +13,22 @@ class QueryHotelModel {
   final String checkInDate;
   @JsonKey(name: 'check_out_date')
   final String checkOutDate;
+  @JsonKey(name: 'next_page_token')
+  final String? nextPageToken;
 
   factory QueryHotelModel.fromJson(Map<String, dynamic> json) =>
       _$QueryHotelModelFromJson(json);
 
-  QueryHotelModel(
-      {required this.engine,
-      required this.q,
-      required this.gl,
-      required this.hl,
-      required this.currency,
-      required this.checkInDate,
-      required this.checkOutDate});
+  QueryHotelModel({
+    required this.engine,
+    required this.q,
+    required this.gl,
+    required this.hl,
+    required this.currency,
+    required this.checkInDate,
+    required this.checkOutDate,
+    required this.nextPageToken,
+  });
 
   Map<String, dynamic> toJson() => _$QueryHotelModelToJson(this);
 

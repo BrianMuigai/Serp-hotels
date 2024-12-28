@@ -15,6 +15,7 @@ QueryHotelModel _$QueryHotelModelFromJson(Map<String, dynamic> json) =>
       currency: json['currency'] as String,
       checkInDate: json['check_in_date'] as String,
       checkOutDate: json['check_out_date'] as String,
+      nextPageToken: json['next_page_token'] as String?,
     );
 
 Map<String, dynamic> _$QueryHotelModelToJson(QueryHotelModel instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$QueryHotelModelToJson(QueryHotelModel instance) =>
       'currency': instance.currency,
       'check_in_date': instance.checkInDate,
       'check_out_date': instance.checkOutDate,
+      'next_page_token': instance.nextPageToken,
     };
