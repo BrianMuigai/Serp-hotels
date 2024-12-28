@@ -81,14 +81,14 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i546.ClientProvider>(
         () => _i546.ClientProvider(gh<_i758.DioClient>()));
-    gh.lazySingleton<_i926.LoadFavouritesUsecase>(
-        () => _i926.LoadFavouritesUsecase(gh<_i518.FavouritesRepository>()));
+    gh.lazySingleton<_i372.CheckIfFavUsecase>(
+        () => _i372.CheckIfFavUsecase(gh<_i518.FavouritesRepository>()));
     gh.lazySingleton<_i21.AddToFavouritesUsecase>(
         () => _i21.AddToFavouritesUsecase(gh<_i518.FavouritesRepository>()));
     gh.lazySingleton<_i506.DeleteFavouriteUsecase>(
         () => _i506.DeleteFavouriteUsecase(gh<_i518.FavouritesRepository>()));
-    gh.lazySingleton<_i372.CheckIfFavUsecase>(
-        () => _i372.CheckIfFavUsecase(gh<_i518.FavouritesRepository>()));
+    gh.lazySingleton<_i926.LoadFavouritesUsecase>(
+        () => _i926.LoadFavouritesUsecase(gh<_i518.FavouritesRepository>()));
     gh.lazySingleton<_i996.HotelsRemoteDatasource>(
         () => _i996.HotelsRemoteDatasource(gh<_i546.ClientProvider>()));
     gh.factory<_i624.FavouritesBloc>(() => _i624.FavouritesBloc(

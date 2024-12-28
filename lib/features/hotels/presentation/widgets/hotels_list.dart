@@ -14,48 +14,58 @@ class HotelsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hotelsBloc = context.read<HotelsBloc>();
-    return BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
-      if (state is HotelsLoadingState) {
-        return HotelsShimmer();
-      } else if (state is ListHotelsError) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Text(
-                state.error,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.red),
+    return RefreshIndicator.adaptive(
+      onRefresh: () async {
+        hotelsBloc.add(ListHotelsEvent(
+          params: GetHotelsParams(
+              checkInDate: formatDateObj(getCurrentDateTime()),
+              checkOutDate: formatDateObj(addDays(1, getCurrentDateTime()))),
+        ));
+      },
+      child: BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
+        if (state is HotelsLoadingState) {
+          return HotelsShimmer();
+        } else if (state is ListHotelsError) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  state.error,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.red),
+                ),
               ),
-            ),
-            IconButton(
-                onPressed: () => hotelsBloc.add(ListHotelsEvent(
-                      params: GetHotelsParams(
-                          checkInDate: formatDateObj(getCurrentDateTime()),
-                          checkOutDate:
-                              formatDateObj(addDays(1, getCurrentDateTime()))),
-                    )),
-                icon: Icon(Icons.replay_outlined))
-          ],
-        );
-      } else if (state is ListHotelsSuccess || hotelsBloc.hotels != null) {
-        SearchResponse hotels;
-        if (state is ListHotelsSuccess) {
-          hotels = state.hotels;
-        } else {
-          hotels = hotelsBloc.hotels!;
+              IconButton(
+                  onPressed: () => hotelsBloc.add(ListHotelsEvent(
+                        params: GetHotelsParams(
+                            checkInDate: formatDateObj(getCurrentDateTime()),
+                            checkOutDate: formatDateObj(
+                                addDays(1, getCurrentDateTime()))),
+                      )),
+                  icon: Icon(Icons.replay_outlined))
+            ],
+          );
+        } else if (state is ListHotelsSuccess || hotelsBloc.hotels != null) {
+          SearchResponse hotels;
+          if (state is ListHotelsSuccess) {
+            hotels = state.hotels;
+          } else {
+            hotels = hotelsBloc.hotels!;
+          }
+          if (hotels.properties.isEmpty) {
+            return Center(child: Text(AppStrings.noData));
+          }
+          return ListView.separated(
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemCount: hotels.properties.length,
+            padding: const EdgeInsets.only(top: 20),
+            itemBuilder: (context, index) =>
+                PropertyCard(hotel: hotels.properties[index]),
+          );
         }
-        if (hotels.properties.isEmpty) {
-          return Center(child: Text(AppStrings.noData));
-        }
-        return ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(height: 10),
-          itemCount: hotels.properties.length,
-          itemBuilder: (context, index) =>
-              PropertyCard(hotel: hotels.properties[index]),
-        );
-      }
-      return Center(child: Text(AppStrings.noData));
-    });
+        return Center(child: Text(AppStrings.noData));
+      }),
+    );
   }
 }

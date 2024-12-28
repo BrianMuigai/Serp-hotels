@@ -20,9 +20,12 @@ class FavouritesBloc extends Bloc<FavouritesEvent, FavouritesState> {
   final DeleteFavouriteUsecase _deleteFavouriteUsecase;
   final CheckIfFavUsecase _checkIfFavUsecase;
 
-  FavouritesBloc(this._loadFavouritesUsecase, this._addToFavouritesUsecase,
-      this._deleteFavouriteUsecase, this._checkIfFavUsecase)
-      : super(FavouritesInitial()) {
+  FavouritesBloc(
+    this._loadFavouritesUsecase,
+    this._addToFavouritesUsecase,
+    this._deleteFavouriteUsecase,
+    this._checkIfFavUsecase,
+  ) : super(FavouritesInitial()) {
     on<ListFavouritesEvent>(_listFavourites);
     on<AddFavouriteEvent>(_addFavourite);
     on<DeleteFavouriteEvent>(_deleteFavourite);
