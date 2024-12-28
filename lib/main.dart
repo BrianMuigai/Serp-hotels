@@ -26,20 +26,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      debugShowCheckedModeBanner: !kReleaseMode,
-      title: AppStrings.appName,
-      routerConfig: _appRouter.config(),
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          selectedIconTheme: IconThemeData(size: 28),
-          unselectedIconTheme: IconThemeData(size: 24),
-          type: BottomNavigationBarType.fixed,
-        ),
-      ),
-    );
+        debugShowCheckedModeBanner: !kReleaseMode,
+        title: AppStrings.appName,
+        routerConfig: _appRouter.config(),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: Colors.white,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
+            selectedIconTheme: IconThemeData(size: 28),
+            unselectedIconTheme: IconThemeData(size: 24),
+            type: BottomNavigationBarType.fixed,
+          ),
+        ));
   }
 }

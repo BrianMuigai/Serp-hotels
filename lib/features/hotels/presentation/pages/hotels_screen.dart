@@ -1,4 +1,5 @@
 // hotels.dart
+import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
 import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
@@ -8,6 +9,7 @@ import 'package:buenro_hotels/features/hotels/presentation/widgets/hotels_list.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class HotelsScreen extends StatefulWidget {
   const HotelsScreen({super.key});
 

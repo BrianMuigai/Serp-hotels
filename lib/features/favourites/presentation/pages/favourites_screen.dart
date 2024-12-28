@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
 import 'package:buenro_hotels/features/favourites/presentation/widgets/favourites_list.dart';
@@ -5,6 +6,7 @@ import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+@RoutePage()
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({super.key});
 
