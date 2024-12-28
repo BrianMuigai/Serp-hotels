@@ -2,6 +2,7 @@
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
 import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
+import 'package:buenro_hotels/common/utils/debouncer.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
 import 'package:buenro_hotels/features/hotels/presentation/widgets/hotels_list.dart';
 import 'package:flutter/material.dart';
@@ -15,18 +16,19 @@ class HotelsScreen extends StatefulWidget {
 }
 
 class _HotelsScreenState extends State<HotelsScreen> {
+  late HotelsBloc hotelsBloc;
   late ScrollController _scrollController;
+  final Debouncer debouncer = Debouncer(milliseconds: 50);
+  GetHotelsParams queryParams = GetHotelsParams(
+      checkInDate: formatDateObj((getCurrentDateTime())),
+      checkOutDate: formatDateObj(addDays(1, getCurrentDateTime())));
 
   @override
   void initState() {
     super.initState();
-    final hotelsBloc = context.read<HotelsBloc>();
+    hotelsBloc = context.read<HotelsBloc>();
     if (hotelsBloc.hotels.isEmpty) {
-      hotelsBloc.add(ListHotelsEvent(
-        params: GetHotelsParams(
-            checkInDate: formatDateObj((getCurrentDateTime())),
-            checkOutDate: formatDateObj(addDays(1, getCurrentDateTime()))),
-      ));
+      hotelsBloc.add(ListHotelsEvent(params: queryParams));
     }
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
@@ -42,12 +44,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 100) {
-      context.read<HotelsBloc>().add(LoadMoreHotelsEvent(
-            params: GetHotelsParams(
-              checkInDate: formatDateObj(getCurrentDateTime()),
-              checkOutDate: formatDateObj(addDays(1, getCurrentDateTime())),
-            ),
-          ));
+      hotelsBloc.add(LoadMoreHotelsEvent(params: queryParams));
     }
   }
 
@@ -83,20 +80,31 @@ class _HotelsScreenState extends State<HotelsScreen> {
                       borderRadius: BorderRadius.circular(25),
                       color: Colors.grey[200],
                     ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.search, color: Colors.black),
-                        SizedBox(width: 10),
-                        Text(
-                          AppStrings.anywhere,
-                          style: TextStyle(color: Colors.black, fontSize: 16),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.search,
+                            color: Colors.black), // Search icon
+                        hintText:
+                            '${AppStrings.anywhere} | ${AppStrings.anytime}', // Placeholder combining both strings
+                        hintStyle: TextStyle(color: Colors.black, fontSize: 16),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
                         ),
-                        Spacer(),
-                        Text(
-                          AppStrings.anytime,
-                          style: TextStyle(color: Colors.black, fontSize: 16),
-                        ),
-                      ],
+                        filled: true,
+                        fillColor: Colors.grey[200], // Background color
+                      ),
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      // initialValue: queryParams.q,
+                      onChanged: (value) {
+                        queryParams = queryParams.copyWith(q: value);
+                        debouncer.run(
+                            timeout: 1000,
+                            () => hotelsBloc
+                                .add(ListHotelsEvent(params: queryParams)));
+                      },
                     ),
                   ),
                 ),
@@ -104,12 +112,20 @@ class _HotelsScreenState extends State<HotelsScreen> {
                 IconButton(
                   padding: EdgeInsets.zero,
                   icon: Icon(Icons.filter_alt_outlined),
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog.adaptive(
+                              title: Text(AppStrings.appName),
+                              content: Text(AppStrings.notYetImplemented),
+                            ));
+                  },
                   color: Colors.black,
                 ),
               ],
             ),
           ),
+          const SizedBox(height: 10),
           BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
             if (state is LoadingMore || state is HotelsLoadingState) {
               return LinearProgressIndicator(color: Colors.grey[200]);

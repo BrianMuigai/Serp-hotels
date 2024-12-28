@@ -96,7 +96,7 @@ class _PropertyCardState extends State<PropertyCard> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    widget.hotel.ratePerNight.lowest,
+                    widget.hotel.totalRate?.lowest ?? '-',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey[700],
@@ -106,7 +106,7 @@ class _PropertyCardState extends State<PropertyCard> {
                   Row(
                     children: [
                       Text(
-                        '${widget.hotel.checkInTime} - ${widget.hotel.checkOutTime ?? ''}',
+                        '${widget.hotel.checkInTime ?? ''} - ${widget.hotel.checkOutTime ?? ''}',
                         style: TextStyle(color: Colors.grey[700]),
                       ),
                       Spacer(),

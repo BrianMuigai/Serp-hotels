@@ -14,4 +14,6 @@ class AppStrings {
   static String hotelsHeader = "NOW, THE WORLD'S\nYOUR HOME";
   static String error = 'Error';
   static String unableToAddToFavs = 'Unable to add to favs';
+  static String notYetImplemented =
+      'Under construction... please try again later';
 }

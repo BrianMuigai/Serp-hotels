@@ -6,12 +6,12 @@ part 'search_response.g.dart';
 @JsonSerializable()
 class SearchResponse {
   @JsonKey(name: 'search_metadata')
-  final SearchMetadata searchMetadata;
+  final SearchMetadata? searchMetadata;
   @JsonKey(name: 'search_parameters')
-  final SearchParameters searchParameters;
+  final SearchParameters? searchParameters;
   @JsonKey(name: 'search_information')
-  final SearchInformation searchInformation;
-  final List<Brand> brands;
+  final SearchInformation? searchInformation;
+  final List<Brand>? brands;
   final List<PropertyModel> properties;
   @JsonKey(name: 'serpapi_pagination')
   final SerpApiPagination pagination;
@@ -165,12 +165,12 @@ class PropertyModel extends Equatable {
   @JsonKey(name: 'check_out_time')
   final String? checkOutTime;
   @JsonKey(name: 'rate_per_night')
-  final Rate ratePerNight;
+  final Rate? ratePerNight;
   @JsonKey(name: 'total_rate')
-  final Rate totalRate;
+  final Rate? totalRate;
   final List<Price>? prices;
   @JsonKey(name: 'nearby_places')
-  final List<NearbyPlace> nearbyPlaces;
+  final List<NearbyPlace>? nearbyPlaces;
   final List<HotelImage> images;
   @JsonKey(name: 'overall_rating')
   final double? overallRating;
