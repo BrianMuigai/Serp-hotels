@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="buenro_hotels API docs, for the Dart programming language.">
+  <title>buenro_hotels - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">buenro_hotels package</li>
+  </ol>
+  <div class="self-name">buenro_hotels</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="buenro-hotels">Buenro Hotels</h1>
+<h2 id="overview">Overview</h2>
+<p>Buenro Hotels is a Dart-based hotel booking application that allows users to search, view, and manage their favorite hotels. The application utilizes various libraries and frameworks to provide a seamless user experience.
+The project follows the principles of Clean Architecture, which emphasizes separation of concerns, making the codebase more maintainable, testable, and scalable. The architecture is divided into several layers, each with distinct responsibilities. The main layers are:</p>
+<ol>
+<li>Presentation Layer</li>
+<li>Domain Layer</li>
+<li>Data Layer</li>
+</ol>
+<pre class="language-dart"><code>+---------------------+
+|  Presentation Layer  |
+|  (UI, Widgets,      |
+|  State Management)   |
++---------------------+
+          |
+          v
++---------------------+
+|     Domain Layer     |
+|  (Use Cases,        |
+|  Entities,          |
+|  Repositories)      |
++---------------------+
+          |
+          v
++---------------------+
+|      Data Layer      |
+|  (Repositories,     |
+|  Data Sources)      |
+|  (Shared Preferences)|
++---------------------+
+</code></pre>
+<p><em>Benefits of Clean Architecture</em></p>
+<ul>
+<li><em><strong>Separation of Concerns:</strong></em> Each layer has a specific responsibility, making it easier to manage and understand the codebase.</li>
+<li><em><strong>Testability:</strong></em> Each layer can be tested independently, allowing for unit testing of business logic and UI components.</li>
+<li><em><strong>Scalability:</strong></em> New features can be added with minimal impact on existing code, as each layer can evolve independently.</li>
+</ul>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#environment-configuration">Environment Configuration</a></li>
+<li><a href="#api-documentation">API Documentation</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li>Search for hotels based on various criteria.</li>
+<li>View detailed information about each hotel.</li>
+<li>Manage a list of favorite hotels.</li>
+<li>Responsive design for mobile and desktop users.</li>
+<li>Integration with external APIs for real-time data.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>To get started with the project, follow these steps:</p>
+<ol>
+<li>
+<p><strong>Clone the repository:</strong></p>
+<pre class="language-bash"><code class="language-bash">git clone https://github.com/yourusername/buenro_hotels.git```
+</code></pre>
+</li>
+<li>
+<p><strong>Navigate to the project directory:</strong></p>
+<pre class="language-bash"><code class="language-bash">cd buenro_hotels
+</code></pre>
+</li>
+<li>
+<p><strong>Install dependencies:</strong></p>
+<pre class="language-bash"><code class="language-bash">flutter pub get
+</code></pre>
+</li>
+</ol>
+<h3 id="environment-configuration">Environment Configuration</h3>
+<p>The project supports two environments which are autoloaded on launch depending on the build type: <em><strong>staging</strong></em> and <em><strong>Production</strong></em>. To configure the environment:-</p>
+<ul>
+<li>Navigate to the env folder</li>
+<li>Place your properties under <em><strong>.dev.env</strong></em> to work with debug/staging</li>
+<li>Place your properties under *<strong>.env</strong> to work with production or beta</li>
+</ul>
+<ol start="4">
+<li>
+<p><strong>Run the application:</strong></p>
+<pre class="language-bash"><code class="language-bash">flutter run
+</code></pre>
+</li>
+</ol>
+<h2 id="usage">Usage</h2>
+<ul>
+<li>Open the application on your emulator.</li>
+<li>Use the search functionality to find hotels and play around the search api</li>
+<li>Click on a hotel image to load it's best quality</li>
+<li>Add/remove hotels to your favourites list</li>
+</ul>
+<h2 id="api-documentation">Api-Documentation</h2>
+<p>for indepth walk around of the project, refer the following links</p>
+<ul>
+<li><a href="doc/api/index.html">Main Documentation</a></li>
+<li><a href="doc/api/search.html">Searchable documentation</a></li>
+</ul>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="app_router">
+  <span class="name"><a href="common_helpers_app_router/common_helpers_app_router-library.html">common/helpers/app_router</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="app_router.gr">
+  <span class="name"><a href="common_helpers_app_router.gr/common_helpers_app_router.gr-library.html">common/helpers/app_router.gr</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="base_usecase">
+  <span class="name"><a href="common_helpers_base_usecase/common_helpers_base_usecase-library.html">common/helpers/base_usecase</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="colors">
+  <span class="name"><a href="common_res_colors/common_res_colors-library.html">common/res/colors</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="strings">
+  <span class="name"><a href="common_res_strings/common_res_strings-library.html">common/res/strings</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="date_utils">
+  <span class="name"><a href="common_utils_date_utils/common_utils_date_utils-library.html">common/utils/date_utils</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="debouncer">
+  <span class="name"><a href="common_utils_debouncer/common_utils_debouncer-library.html">common/utils/debouncer</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="global_bloc_observer">
+  <span class="name"><a href="common_widgets_global_bloc_observer/common_widgets_global_bloc_observer-library.html">common/widgets/global_bloc_observer</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="api_key_interceptor">
+  <span class="name"><a href="core_api_client_client_api_key_interceptor/core_api_client_client_api_key_interceptor-library.html">core/api_client/client/api_key_interceptor</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="dio_client">
+  <span class="name"><a href="core_api_client_client_dio_client/core_api_client_client_dio_client-library.html">core/api_client/client/dio_client</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="loggin_interceptor">
+  <span class="name"><a href="core_api_client_client_loggin_interceptor/core_api_client_client_loggin_interceptor-library.html">core/api_client/client/loggin_interceptor</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="client_provider">
+  <span class="name"><a href="core_api_client_client_provider/core_api_client_client_provider-library.html">core/api_client/client_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="server_error">
+  <span class="name"><a href="core_api_client_models_server_error/core_api_client_models_server_error-library.html">core/api_client/models/server_error</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="injector">
+  <span class="name"><a href="core_di_injector/core_di_injector-library.html">core/di/injector</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="injector.config">
+  <span class="name"><a href="core_di_injector.config/core_di_injector.config-library.html">core/di/injector.config</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="module_injector">
+  <span class="name"><a href="core_di_module_injector/core_di_module_injector-library.html">core/di/module_injector</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="exceptions">
+  <span class="name"><a href="core_errors_exceptions/core_errors_exceptions-library.html">core/errors/exceptions</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="failures">
+  <span class="name"><a href="core_errors_failures/core_errors_failures-library.html">core/errors/failures</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="storage_preference_manager">
+  <span class="name"><a href="core_storage_storage_preference_manager/core_storage_storage_preference_manager-library.html">core/storage/storage_preference_manager</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="account_bloc">
+  <span class="name"><a href="features_account_presentation_bloc_account_bloc/features_account_presentation_bloc_account_bloc-library.html">features/account/presentation/bloc/account_bloc</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="account_screen">
+  <span class="name"><a href="features_account_presentation_pages_account_screen/features_account_presentation_pages_account_screen-library.html">features/account/presentation/pages/account_screen</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="favourites_local_datasource">
+  <span class="name"><a href="features_favourites_data_datasources_favourites_local_datasource/features_favourites_data_datasources_favourites_local_datasource-library.html">features/favourites/data/datasources/favourites_local_datasource</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="favourites_repository_impl">
+  <span class="name"><a href="features_favourites_data_repositories_favourites_repository_impl/features_favourites_data_repositories_favourites_repository_impl-library.html">features/favourites/data/repositories/favourites_repository_impl</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="favourites_repository">
+  <span class="name"><a href="features_favourites_domain_repositories_favourites_repository/features_favourites_domain_repositories_favourites_repository-library.html">features/favourites/domain/repositories/favourites_repository</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="add_to_favourites_usecase">
+  <span class="name"><a href="features_favourites_domain_usecases_add_to_favourites_usecase/features_favourites_domain_usecases_add_to_favourites_usecase-library.html">features/favourites/domain/usecases/add_to_favourites_usecase</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="check_if_fav_usecase">
+  <span class="name"><a href="features_favourites_domain_usecases_check_if_fav_usecase/features_favourites_domain_usecases_check_if_fav_usecase-library.html">features/favourites/domain/usecases/check_if_fav_usecase</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="delete_favourite_usecase">
+  <span class="name"><a href="features_favourites_domain_usecases_delete_favourite_usecase/features_favourites_domain_usecases_delete_favourite_usecase-library.html">features/favourites/domain/usecases/delete_favourite_usecase</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="load_favourites_usecase">
+  <span class="name"><a href="features_favourites_domain_usecases_load_favourites_usecase/features_favourites_domain_usecases_load_favourites_usecase-library.html">features/favourites/domain/usecases/load_favourites_usecase</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="favourites_bloc">
+  <span class="name"><a href="features_favourites_presentation_bloc_favourites_bloc/features_favourites_presentation_bloc_favourites_bloc-library.html">features/favourites/presentation/bloc/favourites_bloc</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="favourites_screen">
+  <span class="name"><a href="features_favourites_presentation_pages_favourites_screen/features_favourites_presentation_pages_favourites_screen-library.html">features/favourites/presentation/pages/favourites_screen</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="favourites_list">
+  <span class="name"><a href="features_favourites_presentation_widgets_favourites_list/features_favourites_presentation_widgets_favourites_list-library.html">features/favourites/presentation/widgets/favourites_list</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="hotels_remote_datasource">
+  <span class="name"><a href="features_hotels_data_datasources_hotels_remote_datasource/features_hotels_data_datasources_hotels_remote_datasource-library.html">features/hotels/data/datasources/hotels_remote_datasource</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="query_hotel_model">
+  <span class="name"><a href="features_hotels_data_models_query_hotel_model/features_hotels_data_models_query_hotel_model-library.html">features/hotels/data/models/query_hotel_model</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="search_response">
+  <span class="name"><a href="features_hotels_data_models_search_response/features_hotels_data_models_search_response-library.html">features/hotels/data/models/search_response</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="hotels_repository_impl">
+  <span class="name"><a href="features_hotels_data_repositories_hotels_repository_impl/features_hotels_data_repositories_hotels_repository_impl-library.html">features/hotels/data/repositories/hotels_repository_impl</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="hotels_repository">
+  <span class="name"><a href="features_hotels_domain_repositories_hotels_repository/features_hotels_domain_repositories_hotels_repository-library.html">features/hotels/domain/repositories/hotels_repository</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="list_hotels_usecase">
+  <span class="name"><a href="features_hotels_domain_usecases_list_hotels_usecase/features_hotels_domain_usecases_list_hotels_usecase-library.html">features/hotels/domain/usecases/list_hotels_usecase</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="hotels_bloc">
+  <span class="name"><a href="features_hotels_presentation_bloc_hotels_bloc/features_hotels_presentation_bloc_hotels_bloc-library.html">features/hotels/presentation/bloc/hotels_bloc</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="full_image_screen">
+  <span class="name"><a href="features_hotels_presentation_pages_full_image_screen/features_hotels_presentation_pages_full_image_screen-library.html">features/hotels/presentation/pages/full_image_screen</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="hotels_screen">
+  <span class="name"><a href="features_hotels_presentation_pages_hotels_screen/features_hotels_presentation_pages_hotels_screen-library.html">features/hotels/presentation/pages/hotels_screen</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="hotels_list">
+  <span class="name"><a href="features_hotels_presentation_widgets_hotels_list/features_hotels_presentation_widgets_hotels_list-library.html">features/hotels/presentation/widgets/hotels_list</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="hotels_shimmer">
+  <span class="name"><a href="features_hotels_presentation_widgets_hotels_shimmer/features_hotels_presentation_widgets_hotels_shimmer-library.html">features/hotels/presentation/widgets/hotels_shimmer</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="image_slider_corousel">
+  <span class="name"><a href="features_hotels_presentation_widgets_image_slider_corousel/features_hotels_presentation_widgets_image_slider_corousel-library.html">features/hotels/presentation/widgets/image_slider_corousel</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="property_card">
+  <span class="name"><a href="features_hotels_presentation_widgets_property_card/features_hotels_presentation_widgets_property_card-library.html">features/hotels/presentation/widgets/property_card</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="overview_bloc">
+  <span class="name"><a href="features_overview_presentation_bloc_overview_bloc/features_overview_presentation_bloc_overview_bloc-library.html">features/overview/presentation/bloc/overview_bloc</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="overview_screen">
+  <span class="name"><a href="features_overview_presentation_pages_overview_screen/features_overview_presentation_pages_overview_screen-library.html">features/overview/presentation/pages/overview_screen</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="main">
+  <span class="name"><a href="main/main-library.html">main</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="main_screen">
+  <span class="name"><a href="main_screen/main_screen-library.html">main_screen</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li class="self-crumb">buenro_hotels package</li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">buenro_hotels</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="common_helpers_app_router/common_helpers_app_router-library.html">common/helpers/app_router</a></li>
+      <li><a href="common_helpers_app_router.gr/common_helpers_app_router.gr-library.html">common/helpers/app_router.gr</a></li>
+      <li><a href="common_helpers_base_usecase/common_helpers_base_usecase-library.html">common/helpers/base_usecase</a></li>
+      <li><a href="common_res_colors/common_res_colors-library.html">common/res/colors</a></li>
+      <li><a href="common_res_strings/common_res_strings-library.html">common/res/strings</a></li>
+      <li><a href="common_utils_date_utils/common_utils_date_utils-library.html">common/utils/date_utils</a></li>
+      <li><a href="common_utils_debouncer/common_utils_debouncer-library.html">common/utils/debouncer</a></li>
+      <li><a href="common_widgets_global_bloc_observer/common_widgets_global_bloc_observer-library.html">common/widgets/global_bloc_observer</a></li>
+      <li><a href="core_api_client_client_api_key_interceptor/core_api_client_client_api_key_interceptor-library.html">core/api_client/client/api_key_interceptor</a></li>
+      <li><a href="core_api_client_client_dio_client/core_api_client_client_dio_client-library.html">core/api_client/client/dio_client</a></li>
+      <li><a href="core_api_client_client_loggin_interceptor/core_api_client_client_loggin_interceptor-library.html">core/api_client/client/loggin_interceptor</a></li>
+      <li><a href="core_api_client_client_provider/core_api_client_client_provider-library.html">core/api_client/client_provider</a></li>
+      <li><a href="core_api_client_models_server_error/core_api_client_models_server_error-library.html">core/api_client/models/server_error</a></li>
+      <li><a href="core_di_injector/core_di_injector-library.html">core/di/injector</a></li>
+      <li><a href="core_di_injector.config/core_di_injector.config-library.html">core/di/injector.config</a></li>
+      <li><a href="core_di_module_injector/core_di_module_injector-library.html">core/di/module_injector</a></li>
+      <li><a href="core_errors_exceptions/core_errors_exceptions-library.html">core/errors/exceptions</a></li>
+      <li><a href="core_errors_failures/core_errors_failures-library.html">core/errors/failures</a></li>
+      <li><a href="core_storage_storage_preference_manager/core_storage_storage_preference_manager-library.html">core/storage/storage_preference_manager</a></li>
+      <li><a href="features_account_presentation_bloc_account_bloc/features_account_presentation_bloc_account_bloc-library.html">features/account/presentation/bloc/account_bloc</a></li>
+      <li><a href="features_account_presentation_pages_account_screen/features_account_presentation_pages_account_screen-library.html">features/account/presentation/pages/account_screen</a></li>
+      <li><a href="features_favourites_data_datasources_favourites_local_datasource/features_favourites_data_datasources_favourites_local_datasource-library.html">features/favourites/data/datasources/favourites_local_datasource</a></li>
+      <li><a href="features_favourites_data_repositories_favourites_repository_impl/features_favourites_data_repositories_favourites_repository_impl-library.html">features/favourites/data/repositories/favourites_repository_impl</a></li>
+      <li><a href="features_favourites_domain_repositories_favourites_repository/features_favourites_domain_repositories_favourites_repository-library.html">features/favourites/domain/repositories/favourites_repository</a></li>
+      <li><a href="features_favourites_domain_usecases_add_to_favourites_usecase/features_favourites_domain_usecases_add_to_favourites_usecase-library.html">features/favourites/domain/usecases/add_to_favourites_usecase</a></li>
+      <li><a href="features_favourites_domain_usecases_check_if_fav_usecase/features_favourites_domain_usecases_check_if_fav_usecase-library.html">features/favourites/domain/usecases/check_if_fav_usecase</a></li>
+      <li><a href="features_favourites_domain_usecases_delete_favourite_usecase/features_favourites_domain_usecases_delete_favourite_usecase-library.html">features/favourites/domain/usecases/delete_favourite_usecase</a></li>
+      <li><a href="features_favourites_domain_usecases_load_favourites_usecase/features_favourites_domain_usecases_load_favourites_usecase-library.html">features/favourites/domain/usecases/load_favourites_usecase</a></li>
+      <li><a href="features_favourites_presentation_bloc_favourites_bloc/features_favourites_presentation_bloc_favourites_bloc-library.html">features/favourites/presentation/bloc/favourites_bloc</a></li>
+      <li><a href="features_favourites_presentation_pages_favourites_screen/features_favourites_presentation_pages_favourites_screen-library.html">features/favourites/presentation/pages/favourites_screen</a></li>
+      <li><a href="features_favourites_presentation_widgets_favourites_list/features_favourites_presentation_widgets_favourites_list-library.html">features/favourites/presentation/widgets/favourites_list</a></li>
+      <li><a href="features_hotels_data_datasources_hotels_remote_datasource/features_hotels_data_datasources_hotels_remote_datasource-library.html">features/hotels/data/datasources/hotels_remote_datasource</a></li>
+      <li><a href="features_hotels_data_models_query_hotel_model/features_hotels_data_models_query_hotel_model-library.html">features/hotels/data/models/query_hotel_model</a></li>
+      <li><a href="features_hotels_data_models_search_response/features_hotels_data_models_search_response-library.html">features/hotels/data/models/search_response</a></li>
+      <li><a href="features_hotels_data_repositories_hotels_repository_impl/features_hotels_data_repositories_hotels_repository_impl-library.html">features/hotels/data/repositories/hotels_repository_impl</a></li>
+      <li><a href="features_hotels_domain_repositories_hotels_repository/features_hotels_domain_repositories_hotels_repository-library.html">features/hotels/domain/repositories/hotels_repository</a></li>
+      <li><a href="features_hotels_domain_usecases_list_hotels_usecase/features_hotels_domain_usecases_list_hotels_usecase-library.html">features/hotels/domain/usecases/list_hotels_usecase</a></li>
+      <li><a href="features_hotels_presentation_bloc_hotels_bloc/features_hotels_presentation_bloc_hotels_bloc-library.html">features/hotels/presentation/bloc/hotels_bloc</a></li>
+      <li><a href="features_hotels_presentation_pages_full_image_screen/features_hotels_presentation_pages_full_image_screen-library.html">features/hotels/presentation/pages/full_image_screen</a></li>
+      <li><a href="features_hotels_presentation_pages_hotels_screen/features_hotels_presentation_pages_hotels_screen-library.html">features/hotels/presentation/pages/hotels_screen</a></li>
+      <li><a href="features_hotels_presentation_widgets_hotels_list/features_hotels_presentation_widgets_hotels_list-library.html">features/hotels/presentation/widgets/hotels_list</a></li>
+      <li><a href="features_hotels_presentation_widgets_hotels_shimmer/features_hotels_presentation_widgets_hotels_shimmer-library.html">features/hotels/presentation/widgets/hotels_shimmer</a></li>
+      <li><a href="features_hotels_presentation_widgets_image_slider_corousel/features_hotels_presentation_widgets_image_slider_corousel-library.html">features/hotels/presentation/widgets/image_slider_corousel</a></li>
+      <li><a href="features_hotels_presentation_widgets_property_card/features_hotels_presentation_widgets_property_card-library.html">features/hotels/presentation/widgets/property_card</a></li>
+      <li><a href="features_overview_presentation_bloc_overview_bloc/features_overview_presentation_bloc_overview_bloc-library.html">features/overview/presentation/bloc/overview_bloc</a></li>
+      <li><a href="features_overview_presentation_pages_overview_screen/features_overview_presentation_pages_overview_screen-library.html">features/overview/presentation/pages/overview_screen</a></li>
+      <li><a href="main/main-library.html">main</a></li>
+      <li><a href="main_screen/main_screen-library.html">main_screen</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    buenro_hotels
+      1.0.0+1
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

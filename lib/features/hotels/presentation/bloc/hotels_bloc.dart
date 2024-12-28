@@ -15,7 +15,6 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final ListHotelsUsecase _listHotelsUsecase;
   final List<PropertyModel> hotels = [];
   late SerpApiPagination pagination;
-  bool isLoadingMore = false;
 
   HotelsBloc(this._listHotelsUsecase) : super(HotelsInitial()) {
     on<ListHotelsEvent>(_listHotels);
@@ -40,7 +39,6 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   FutureOr<void> _loadMore(
       LoadMoreHotelsEvent event, Emitter<HotelsState> emit) async {
     emit(LoadingMore());
-    isLoadingMore = true;
     final params =
         event.params.copyWith(nextPageToken: pagination.nextPageToken);
     final response = await _listHotelsUsecase.call(params);
@@ -54,6 +52,5 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
         return ListHotelsSuccess(hotels: hotels);
       },
     ));
-    isLoadingMore = true;
   }
 }

@@ -47,7 +47,7 @@ class HotelsList extends StatelessWidget {
                   icon: Icon(Icons.replay_outlined))
             ],
           );
-        } else if (state is ListHotelsSuccess || hotelsBloc.hotels != null) {
+        } else if (state is ListHotelsSuccess || hotelsBloc.hotels.isNotEmpty) {
           late List<PropertyModel> hotels;
           if (state is ListHotelsSuccess) {
             hotels = state.hotels;
