@@ -8,14 +8,20 @@ part of 'search_response.dart';
 
 SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
     SearchResponse(
-      searchMetadata: SearchMetadata.fromJson(
-          json['search_metadata'] as Map<String, dynamic>),
-      searchParameters: SearchParameters.fromJson(
-          json['search_parameters'] as Map<String, dynamic>),
-      searchInformation: SearchInformation.fromJson(
-          json['search_information'] as Map<String, dynamic>),
-      brands: (json['brands'] as List<dynamic>)
-          .map((e) => Brand.fromJson(e as Map<String, dynamic>))
+      searchMetadata: json['search_metadata'] == null
+          ? null
+          : SearchMetadata.fromJson(
+              json['search_metadata'] as Map<String, dynamic>),
+      searchParameters: json['search_parameters'] == null
+          ? null
+          : SearchParameters.fromJson(
+              json['search_parameters'] as Map<String, dynamic>),
+      searchInformation: json['search_information'] == null
+          ? null
+          : SearchInformation.fromJson(
+              json['search_information'] as Map<String, dynamic>),
+      brands: (json['brands'] as List<dynamic>?)
+          ?.map((e) => Brand.fromJson(e as Map<String, dynamic>))
           .toList(),
       properties: (json['properties'] as List<dynamic>)
           .map((e) => PropertyModel.fromJson(e as Map<String, dynamic>))
@@ -130,14 +136,17 @@ PropertyModel _$PropertyModelFromJson(Map<String, dynamic> json) =>
           json['gps_coordinates'] as Map<String, dynamic>),
       checkInTime: json['check_in_time'] as String?,
       checkOutTime: json['check_out_time'] as String?,
-      ratePerNight:
-          Rate.fromJson(json['rate_per_night'] as Map<String, dynamic>),
-      totalRate: Rate.fromJson(json['total_rate'] as Map<String, dynamic>),
+      ratePerNight: json['rate_per_night'] == null
+          ? null
+          : Rate.fromJson(json['rate_per_night'] as Map<String, dynamic>),
+      totalRate: json['total_rate'] == null
+          ? null
+          : Rate.fromJson(json['total_rate'] as Map<String, dynamic>),
       prices: (json['prices'] as List<dynamic>?)
           ?.map((e) => Price.fromJson(e as Map<String, dynamic>))
           .toList(),
-      nearbyPlaces: (json['nearby_places'] as List<dynamic>)
-          .map((e) => NearbyPlace.fromJson(e as Map<String, dynamic>))
+      nearbyPlaces: (json['nearby_places'] as List<dynamic>?)
+          ?.map((e) => NearbyPlace.fromJson(e as Map<String, dynamic>))
           .toList(),
       images: (json['images'] as List<dynamic>)
           .map((e) => HotelImage.fromJson(e as Map<String, dynamic>))
