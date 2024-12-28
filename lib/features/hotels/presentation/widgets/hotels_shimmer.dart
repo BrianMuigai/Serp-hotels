@@ -13,6 +13,7 @@ class HotelsShimmer extends StatelessWidget {
         itemCount: 10,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
+        padding: const EdgeInsets.only(top: 20),
         separatorBuilder: (context, index) => const SizedBox(height: 8),
         itemBuilder: (context, index) {
           return Container(

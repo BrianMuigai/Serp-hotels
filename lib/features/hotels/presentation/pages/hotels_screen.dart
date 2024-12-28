@@ -88,8 +88,6 @@ class _HotelsScreenState extends State<HotelsScreen> {
             ),
           ),
 
-          // Main Content Card
-          SizedBox(height: 20),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
