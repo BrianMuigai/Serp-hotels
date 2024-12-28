@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HotelsList extends StatelessWidget {
-  const HotelsList({super.key});
+  final ScrollController controller;
+  const HotelsList({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -47,21 +48,21 @@ class HotelsList extends StatelessWidget {
             ],
           );
         } else if (state is ListHotelsSuccess || hotelsBloc.hotels != null) {
-          SearchResponse hotels;
+          late List<PropertyModel> hotels;
           if (state is ListHotelsSuccess) {
             hotels = state.hotels;
           } else {
-            hotels = hotelsBloc.hotels!;
+            hotels = hotelsBloc.hotels;
           }
-          if (hotels.properties.isEmpty) {
+          if (hotels.isEmpty) {
             return Center(child: Text(AppStrings.noData));
           }
           return ListView.separated(
+            controller: controller,
             separatorBuilder: (context, index) => const SizedBox(height: 10),
-            itemCount: hotels.properties.length,
+            itemCount: hotels.length,
             padding: const EdgeInsets.only(top: 20),
-            itemBuilder: (context, index) =>
-                PropertyCard(hotel: hotels.properties[index]),
+            itemBuilder: (context, index) => PropertyCard(hotel: hotels[index]),
           );
         }
         return Center(child: Text(AppStrings.noData));

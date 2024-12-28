@@ -126,8 +126,8 @@ class _PropertyCardState extends State<PropertyCard> {
                                       AddFavouriteEvent(model: widget.hotel));
                             },
                             icon: Icon(isFav
-                                ? Icons.bookmark_added
-                                : Icons.bookmark_add_outlined));
+                                ? Icons.favorite
+                                : Icons.favorite_border));
                       }),
                     ],
                   ),

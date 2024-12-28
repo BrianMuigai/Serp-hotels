@@ -15,16 +15,39 @@ class HotelsScreen extends StatefulWidget {
 }
 
 class _HotelsScreenState extends State<HotelsScreen> {
+  late ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
     final hotelsBloc = context.read<HotelsBloc>();
-    if (hotelsBloc.hotels == null) {
+    if (hotelsBloc.hotels.isEmpty) {
       hotelsBloc.add(ListHotelsEvent(
         params: GetHotelsParams(
             checkInDate: formatDateObj((getCurrentDateTime())),
             checkOutDate: formatDateObj(addDays(1, getCurrentDateTime()))),
       ));
+    }
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 100) {
+      context.read<HotelsBloc>().add(LoadMoreHotelsEvent(
+            params: GetHotelsParams(
+              checkInDate: formatDateObj(getCurrentDateTime()),
+              checkOutDate: formatDateObj(addDays(1, getCurrentDateTime())),
+            ),
+          ));
     }
   }
 
@@ -87,11 +110,17 @@ class _HotelsScreenState extends State<HotelsScreen> {
               ],
             ),
           ),
+          BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
+            if (state is LoadingMore || state is HotelsLoadingState) {
+              return LinearProgressIndicator(color: Colors.grey[200]);
+            }
+            return const SizedBox.shrink();
+          }),
 
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: HotelsList(),
+              child: HotelsList(controller: _scrollController),
             ),
           ),
         ],

@@ -15,12 +15,14 @@ class ListHotelsUsecase implements UseCase<SearchResponse, GetHotelsParams> {
   @override
   Future<Either<Failure, SearchResponse>> call(GetHotelsParams params) async {
     return await _repo.listHotels(QueryHotelModel(
-        engine: params.engine,
-        q: params.q,
-        gl: params.gl,
-        hl: params.hl,
-        currency: params.currency,
-        checkInDate: params.checkInDate,
-        checkOutDate: params.checkOutDate));
+      engine: params.engine,
+      q: params.q,
+      gl: params.gl,
+      hl: params.hl,
+      currency: params.currency,
+      checkInDate: params.checkInDate,
+      checkOutDate: params.checkOutDate,
+      nextPageToken: params.nextPageToken,
+    ));
   }
 }

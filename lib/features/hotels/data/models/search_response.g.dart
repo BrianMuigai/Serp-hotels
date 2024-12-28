@@ -20,6 +20,8 @@ SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
       properties: (json['properties'] as List<dynamic>)
           .map((e) => PropertyModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      pagination: SerpApiPagination.fromJson(
+          json['serpapi_pagination'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) =>
@@ -29,6 +31,7 @@ Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) =>
       'search_information': instance.searchInformation,
       'brands': instance.brands,
       'properties': instance.properties,
+      'serpapi_pagination': instance.pagination,
     };
 
 SearchMetadata _$SearchMetadataFromJson(Map<String, dynamic> json) =>
@@ -255,4 +258,18 @@ Map<String, dynamic> _$HotelImageToJson(HotelImage instance) =>
     <String, dynamic>{
       'thumbnail': instance.thumbnail,
       'original_image': instance.originalImage,
+    };
+
+SerpApiPagination _$SerpApiPaginationFromJson(Map<String, dynamic> json) =>
+    SerpApiPagination(
+      currentFrom: (json['current_from'] as num).toInt(),
+      currentTo: (json['current_to'] as num).toInt(),
+      nextPageToken: json['next_page_token'] as String,
+    );
+
+Map<String, dynamic> _$SerpApiPaginationToJson(SerpApiPagination instance) =>
+    <String, dynamic>{
+      'current_from': instance.currentFrom,
+      'current_to': instance.currentTo,
+      'next_page_token': instance.nextPageToken,
     };

@@ -11,8 +11,10 @@ class HotelsInitial extends HotelsState {}
 
 class HotelsLoadingState extends HotelsState {}
 
+class LoadingMore extends HotelsState {}
+
 class ListHotelsSuccess extends HotelsState {
-  final SearchResponse hotels;
+  final List<PropertyModel> hotels;
 
   const ListHotelsSuccess({required this.hotels});
 }
