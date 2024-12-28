@@ -32,12 +32,12 @@ SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) =>
     <String, dynamic>{
-      'search_metadata': instance.searchMetadata,
-      'search_parameters': instance.searchParameters,
-      'search_information': instance.searchInformation,
-      'brands': instance.brands,
-      'properties': instance.properties,
-      'serpapi_pagination': instance.pagination,
+      'search_metadata': instance.searchMetadata?.toJson(),
+      'search_parameters': instance.searchParameters?.toJson(),
+      'search_information': instance.searchInformation?.toJson(),
+      'brands': instance.brands?.map((e) => e.toJson()).toList(),
+      'properties': instance.properties.map((e) => e.toJson()).toList(),
+      'serpapi_pagination': instance.pagination.toJson(),
     };
 
 SearchMetadata _$SearchMetadataFromJson(Map<String, dynamic> json) =>

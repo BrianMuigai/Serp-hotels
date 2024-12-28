@@ -16,6 +16,6 @@ void main() {
     final json = queryHotelModel.toJson();
     final newModel = QueryHotelModel.fromJson(json);
 
-    expect(newModel, queryHotelModel);
+    expect(newModel.toJson().toString(), queryHotelModel.toJson().toString());
   });
 }

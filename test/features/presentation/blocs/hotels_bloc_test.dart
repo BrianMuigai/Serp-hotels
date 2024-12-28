@@ -1,21 +1,39 @@
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
-import 'package:buenro_hotels/common/utils/date_utils.dart';
+import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/domain/usecases/list_hotels_usecase.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockListHotelsUsecase extends Mock implements ListHotelsUsecase {}
+import 'hotels_bloc_test.mocks.dart';
 
+@GenerateMocks([ListHotelsUsecase])
 void main() {
+  late MockListHotelsUsecase mockUsecase;
+  late HotelsBloc bloc;
+
+  setUp(() {
+    mockUsecase = MockListHotelsUsecase();
+    bloc = HotelsBloc(mockUsecase);
+  });
   test('HotelsBloc should emit correct states', () {
-    final mockUsecase = MockListHotelsUsecase();
-    final bloc = HotelsBloc(mockUsecase);
-    bloc.add(ListHotelsEvent(
-        params: GetHotelsParams(
-      checkInDate: formatDateObj(getCurrentDateTime()),
-      checkOutDate: formatDateObj(addDays(1, getCurrentDateTime())),
-    )));
+    final params = GetHotelsParams(
+      checkInDate: '2024-12-28',
+      checkOutDate: '2024-12-29',
+    );
+
+    final expectedResponse = SearchResponse(
+      properties: [],
+      pagination:
+          SerpApiPagination(currentFrom: 1, currentTo: 10, nextPageToken: 'TE'),
+    );
+
+    when(mockUsecase.call(params))
+        .thenAnswer((_) async => Right(expectedResponse));
+
+    bloc.add(ListHotelsEvent(params: params));
 
     expectLater(
       bloc.stream,

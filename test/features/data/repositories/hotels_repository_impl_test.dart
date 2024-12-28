@@ -1,36 +1,49 @@
-import 'package:buenro_hotels/common/utils/date_utils.dart';
 import 'package:buenro_hotels/features/hotels/data/datasources/hotels_remote_datasource.dart';
 import 'package:buenro_hotels/features/hotels/data/models/query_hotel_model.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/data/repositories/hotels_repository_impl.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
-class MockHotelsDataSource extends Mock implements HotelsRemoteDatasource {}
+import 'hotels_repository_impl_test.mocks.dart';
 
+@GenerateMocks([HotelsRemoteDatasource])
 void main() {
-  test('HotelsRepositoryImpl should return list of hotels', () async {
-    final mockDataSource = MockHotelsDataSource();
-    final repo = HotelsRepositoryImpl(mockDataSource);
+  late MockHotelsRemoteDatasource mockDataSource;
+  late HotelsRepositoryImpl repo;
 
-    when(mockDataSource.listHotels(QueryHotelModel(
+  setUp(() {
+    mockDataSource = MockHotelsRemoteDatasource();
+    repo = HotelsRepositoryImpl(mockDataSource);
+  });
+
+  test('returns SearchResponse for valid query', () async {
+    // Arrange
+    final expectedQuery = QueryHotelModel(
       engine: 'engine',
       q: 'query',
       gl: 'US',
       hl: 'en',
       currency: 'USD',
-      checkInDate: formatDateObj(getCurrentDateTime()),
-      checkOutDate: formatDateObj(addDays(1, getCurrentDateTime())),
-    ))).thenAnswer((_) async => [Search(name: 'Test Hotel')]);
+      checkInDate: '2024-12-28',
+      checkOutDate: '2024-12-29',
+    );
+    final expectedResponse = SearchResponse(
+      properties: [],
+      pagination:
+          SerpApiPagination(currentFrom: 1, currentTo: 10, nextPageToken: 'TE'),
+    ).toJson();
 
-    final result = await repo.listHotels(QueryHotelModel(
-      engine: 'engine',
-      q: 'query',
-      gl: 'US',
-      hl: 'en',
-      currency: 'USD',
-      checkInDate: formatDateObj(getCurrentDateTime()),
-      checkOutDate: formatDateObj(addDays(1, getCurrentDateTime())),
-    ));
+    when(mockDataSource.listHotels(expectedQuery))
+        .thenAnswer((_) async => expectedResponse);
+
+    // Act
+    final result = await repo.listHotels(expectedQuery);
+
+    // Assert
     expect(result.isRight(), true);
+    verify(mockDataSource.listHotels(expectedQuery)).called(1);
+    verifyNoMoreInteractions(mockDataSource);
   });
 }
