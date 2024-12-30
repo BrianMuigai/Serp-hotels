@@ -1,19 +1,26 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 class AppStrings {
-  static String appName = 'Buenro Hotels';
-  static String hotels = 'Hotels';
-  static String overview = 'Overview';
-  static String favourites = 'Favourites';
-  static String account = 'Account';
-  static String somethingWentWrong = 'Something went wrong';
-  static String serverFailed = 'ServerFailed';
-  static String failedToConnectToNetwork = 'Failed to connect to the network';
-  static String cacheFailure = 'Cache Failure';
-  static String noData = 'No Data!';
-  static String anywhere = 'Anywhere';
-  static String anytime = 'Anytime';
-  static String hotelsHeader = "NOW, THE WORLD'S\nYOUR HOME";
-  static String error = 'Error';
-  static String unableToAddToFavs = 'Unable to add to favs';
-  static String notYetImplemented =
-      'Under construction... please try again later';
+  final Map<String, String> _localizedStrings;
+
+  AppStrings(this._localizedStrings);
+
+  String translate(String key) => _localizedStrings[key] ?? key;
+
+  static Future<AppStrings> load(String languageCode) async {
+    final String jsonString =
+        await rootBundle.loadString('assets/lang/$languageCode.json');
+    final Map<String, dynamic> jsonMap = json.decode(jsonString);
+
+    return AppStrings(
+        jsonMap.map((key, value) => MapEntry(key, value.toString())));
+  }
+
+  static String getString(BuildContext context, String str) {
+    final strings = Localizations.of<AppStrings>(context, AppStrings);
+    return strings?.translate(str) ?? str;
+  }
 }

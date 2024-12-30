@@ -63,7 +63,7 @@ class _FullImageScreenState extends State<FullImageScreen> {
                         builder: (BuildContext context) {
                           return AlertDialog.adaptive(
                             title: Text(
-                              AppStrings.error,
+                              AppStrings.getString(context, 'error'),
                               style: TextStyle(
                                   color: Colors.redAccent,
                                   fontWeight: FontWeight.w500),

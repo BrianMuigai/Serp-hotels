@@ -23,7 +23,7 @@ class FavouritesRepositoryImpl implements FavouritesRepository {
       PropertyModel model) async {
     final favs = await _localDatasource.addFavourite(model);
     if (favs != null) return Right(favs);
-    return Left(GeneralFailure(error: AppStrings.unableToAddToFavs));
+    return Left(GeneralFailure(error: 'unableToAddToFavs'));
   }
 
   @override

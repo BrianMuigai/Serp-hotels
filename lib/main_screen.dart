@@ -33,19 +33,19 @@ class MainScreen extends StatelessWidget {
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.dashboard),
-                  label: AppStrings.overview,
+                  label: AppStrings.getString(context, 'overview'),
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.hotel),
-                  label: AppStrings.hotels,
+                  label: AppStrings.getString(context, 'hotels'),
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.star),
-                  label: AppStrings.favourites,
+                  label: AppStrings.getString(context, 'favourites'),
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.account_circle),
-                  label: AppStrings.account,
+                  label: AppStrings.getString(context, 'account'),
                 ),
               ],
               currentIndex: tabsRouter.activeIndex,

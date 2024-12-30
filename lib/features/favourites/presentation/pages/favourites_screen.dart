@@ -25,7 +25,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppStrings.favourites)),
+      appBar: AppBar(title: Text(AppStrings.getString(context, 'favourites'))),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: BlocListener<FavouritesBloc, FavouritesState>(
@@ -35,7 +35,7 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                     context: context,
                     builder: (context) {
                       return Center(
-                        child: Text(state.error),
+                        child: Text(AppStrings.getString(context, state.error)),
                       );
                     });
               } else if (state is LoadFavouritesSuccess ||

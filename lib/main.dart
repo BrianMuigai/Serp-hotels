@@ -1,4 +1,6 @@
 import 'package:buenro_hotels/common/helpers/app_router.dart';
+import 'package:buenro_hotels/common/helpers/app_strings_delegate.dart';
+import 'package:buenro_hotels/common/helpers/locale_provider.dart';
 import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/common/widgets/global_bloc_observer.dart';
 import 'package:buenro_hotels/core/di/injector.dart';
@@ -6,6 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +20,10 @@ void main() async {
     await dotenv.load(fileName: "env/.dev.env");
   }
   await configureDependencies();
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (_) => LocaleProvider(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,10 +32,22 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    final localeProvider = Provider.of<LocaleProvider>(context);
     return MaterialApp.router(
         debugShowCheckedModeBanner: !kReleaseMode,
-        title: AppStrings.appName,
+        title: AppStrings.getString(context, 'appName'),
         routerConfig: _appRouter.config(),
+        localizationsDelegates: [
+          AppStringsDelegate('en'), // Pass the default language
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('en', ''), // English
+          Locale('es', ''), // Spanish
+          Locale('fr', ''), // French
+        ],
+        locale: localeProvider.locale,
         theme: ThemeData(
           primarySwatch: Colors.blue,
           bottomNavigationBarTheme: BottomNavigationBarThemeData(

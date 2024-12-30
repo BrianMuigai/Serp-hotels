@@ -60,7 +60,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
             child: Text(
-              AppStrings.hotelsHeader,
+              AppStrings.getString(context, 'hotelsHeader'),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
@@ -87,7 +87,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
                         prefixIcon: Icon(Icons.search,
                             color: Colors.black), // Search icon
                         hintText:
-                            '${AppStrings.anywhere} | ${AppStrings.anytime}', // Placeholder combining both strings
+                            '${AppStrings.getString(context, 'anywhere')} | ${AppStrings.getString(context, 'anytime')}', // Placeholder combining both strings
                         hintStyle: TextStyle(color: Colors.black, fontSize: 16),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -118,8 +118,10 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog.adaptive(
-                              title: Text(AppStrings.appName),
-                              content: Text(AppStrings.notYetImplemented),
+                              title: Text(
+                                  AppStrings.getString(context, 'appName')),
+                              content: Text(AppStrings.getString(
+                                  context, 'notYetImplemented')),
                             ));
                   },
                   color: Colors.black,

@@ -1,0 +1,18 @@
+{
+  "appName": "Hôtels Buenro",
+  "hotels": "Hôtels",
+  "overview": "Aperçu",
+  "favourites": "Favoris",
+  "account": "Compte",
+  "somethingWentWrong": "Quelque chose s'est mal passé",
+  "serverFailed": "Échec du serveur",
+  "failedToConnectToNetwork": "Impossible de se connecter au réseau",
+  "cacheFailure": "Échec du cache",
+  "noData": "Pas de données!",
+  "anywhere": "Partout",
+  "anytime": "À tout moment",
+  "hotelsHeader": "MAINTENANT, LE MONDE EST\nVOTRE MAISON",
+  "error": "Erreur",
+  "unableToAddToFavs": "Impossible d'ajouter aux favoris",
+  "notYetImplemented": "En construction... veuillez réessayer plus tard"
+}

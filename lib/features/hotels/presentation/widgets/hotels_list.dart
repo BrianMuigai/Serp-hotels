@@ -32,7 +32,7 @@ class HotelsList extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  state.error,
+                  AppStrings.getString(context, state.error),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.red),
                 ),
@@ -55,7 +55,7 @@ class HotelsList extends StatelessWidget {
             hotels = hotelsBloc.hotels;
           }
           if (hotels.isEmpty) {
-            return Center(child: Text(AppStrings.noData));
+            return Center(child: Text(AppStrings.getString(context, 'noData')));
           }
           return ListView.separated(
             controller: controller,
@@ -65,7 +65,7 @@ class HotelsList extends StatelessWidget {
             itemBuilder: (context, index) => PropertyCard(hotel: hotels[index]),
           );
         }
-        return Center(child: Text(AppStrings.noData));
+        return Center(child: Text(AppStrings.getString(context, 'noData')));
       }),
     );
   }

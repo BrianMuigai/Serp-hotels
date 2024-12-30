@@ -23,7 +23,7 @@ class FavouritesList extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  state.error,
+                  AppStrings.getString(context, state.error),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.red),
                 ),
@@ -36,7 +36,7 @@ class FavouritesList extends StatelessWidget {
           );
         }
         if (favourites.isEmpty) {
-          return Center(child: Text(AppStrings.noData));
+          return Center(child: Text(AppStrings.getString(context, 'noData')));
         }
         return ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(height: 10),
