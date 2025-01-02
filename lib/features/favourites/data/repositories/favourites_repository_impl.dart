@@ -1,4 +1,3 @@
-import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/core/errors/failures.dart';
 import 'package:buenro_hotels/features/favourites/data/datasources/favourites_local_datasource.dart';
 import 'package:buenro_hotels/features/favourites/domain/repositories/favourites_repository.dart';

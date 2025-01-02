@@ -14,5 +14,9 @@
   "hotelsHeader": "NOW, THE WORLD'S\nYOUR HOME",
   "error": "Error",
   "unableToAddToFavs": "Unable to add to favs",
-  "notYetImplemented": "Under construction... please try again later"
+  "notYetImplemented": "Under construction... please try again later",
+  "english": "English",
+  "french": "French",
+  "spanish": "Spanish",
+  "settings": "Settings"
 }

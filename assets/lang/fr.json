@@ -14,5 +14,9 @@
   "hotelsHeader": "MAINTENANT, LE MONDE EST\nVOTRE MAISON",
   "error": "Erreur",
   "unableToAddToFavs": "Impossible d'ajouter aux favoris",
-  "notYetImplemented": "En construction... veuillez réessayer plus tard"
+  "notYetImplemented": "En construction... veuillez réessayer plus tard",
+  "english": "Anglais",
+  "french": "Français",
+  "spanish": "Espagnol",
+  "settings": "Paramètres"
 }

@@ -1,13 +1,12 @@
 // main_screen.dart
 import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/common/helpers/app_router.gr.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/core/di/injector.dart';
 import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'common/res/strings.dart';
 
 @RoutePage()
 class MainScreen extends StatelessWidget {
@@ -33,19 +32,19 @@ class MainScreen extends StatelessWidget {
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.dashboard),
-                  label: AppStrings.getString(context, 'overview'),
+                  label: AppLocalizations.getString(context, 'overview'),
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.hotel),
-                  label: AppStrings.getString(context, 'hotels'),
+                  label: AppLocalizations.getString(context, 'hotels'),
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.star),
-                  label: AppStrings.getString(context, 'favourites'),
+                  label: AppLocalizations.getString(context, 'favourites'),
                 ),
                 BottomNavigationBarItem(
                   icon: const Icon(Icons.account_circle),
-                  label: AppStrings.getString(context, 'account'),
+                  label: AppLocalizations.getString(context, 'account'),
                 ),
               ],
               currentIndex: tabsRouter.activeIndex,

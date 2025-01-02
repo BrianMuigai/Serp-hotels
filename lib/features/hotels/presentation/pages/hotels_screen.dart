@@ -1,7 +1,7 @@
 // hotels.dart
 import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
 import 'package:buenro_hotels/common/utils/debouncer.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
@@ -60,7 +60,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
             child: Text(
-              AppStrings.getString(context, 'hotelsHeader'),
+              AppLocalizations.getString(context, 'hotelsHeader'),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
@@ -87,7 +87,7 @@ class _HotelsScreenState extends State<HotelsScreen> {
                         prefixIcon: Icon(Icons.search,
                             color: Colors.black), // Search icon
                         hintText:
-                            '${AppStrings.getString(context, 'anywhere')} | ${AppStrings.getString(context, 'anytime')}', // Placeholder combining both strings
+                            '${AppLocalizations.getString(context, 'anywhere')} | ${AppLocalizations.getString(context, 'anytime')}', // Placeholder combining both strings
                         hintStyle: TextStyle(color: Colors.black, fontSize: 16),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -118,9 +118,9 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog.adaptive(
-                              title: Text(
-                                  AppStrings.getString(context, 'appName')),
-                              content: Text(AppStrings.getString(
+                              title: Text(AppLocalizations.getString(
+                                  context, 'appName')),
+                              content: Text(AppLocalizations.getString(
                                   context, 'notYetImplemented')),
                             ));
                   },

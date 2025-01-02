@@ -1,7 +1,6 @@
 import 'package:buenro_hotels/common/helpers/app_router.dart';
-import 'package:buenro_hotels/common/helpers/app_strings_delegate.dart';
-import 'package:buenro_hotels/common/helpers/locale_provider.dart';
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
+import 'package:buenro_hotels/common/notifiers/locale_provider.dart';
 import 'package:buenro_hotels/common/widgets/global_bloc_observer.dart';
 import 'package:buenro_hotels/core/di/injector.dart';
 import 'package:flutter/foundation.dart';
@@ -35,17 +34,18 @@ class MyApp extends StatelessWidget {
     final localeProvider = Provider.of<LocaleProvider>(context);
     return MaterialApp.router(
         debugShowCheckedModeBanner: !kReleaseMode,
-        title: AppStrings.getString(context, 'appName'),
+        title: AppLocalizations.getString(context, 'appName'),
         routerConfig: _appRouter.config(),
         localizationsDelegates: [
-          AppStringsDelegate('en'), // Pass the default language
+          AppLocalizations.delegate('en'), // Pass the default language
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
         ],
         supportedLocales: [
-          Locale('en', ''), // English
-          Locale('es', ''), // Spanish
-          Locale('fr', ''), // French
+          Locale('en'),
+          Locale('es'),
+          Locale('fr'),
         ],
         locale: localeProvider.locale,
         theme: ThemeData(

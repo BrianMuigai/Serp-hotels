@@ -1,4 +1,4 @@
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/presentation/widgets/property_card.dart';
@@ -23,7 +23,7 @@ class FavouritesList extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  AppStrings.getString(context, state.error),
+                  AppLocalizations.getString(context, state.error),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.red),
                 ),
@@ -36,7 +36,8 @@ class FavouritesList extends StatelessWidget {
           );
         }
         if (favourites.isEmpty) {
-          return Center(child: Text(AppStrings.getString(context, 'noData')));
+          return Center(
+              child: Text(AppLocalizations.getString(context, 'noData')));
         }
         return ListView.separated(
           separatorBuilder: (context, index) => const SizedBox(height: 10),

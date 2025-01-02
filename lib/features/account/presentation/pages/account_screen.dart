@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:buenro_hotels/common/helpers/l10n.dart';
-import 'package:buenro_hotels/common/helpers/locale_provider.dart';
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/notifiers/locale_provider.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,27 +14,28 @@ class AccountScreen extends StatelessWidget {
     final currentLocale = provider.locale;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Account')),
+      appBar:
+          AppBar(title: Text(AppLocalizations.getString(context, 'account'))),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(AppStrings.getString(context, 'Settings')),
+            Text(AppLocalizations.getString(context, 'settings')),
             SizedBox(height: 20),
             DropdownButton<Locale>(
               value: currentLocale,
               items: [
                 DropdownMenuItem(
                   value: Locale('en'),
-                  child: Text('English'),
+                  child: Text(AppLocalizations.getString(context, 'english')),
                 ),
                 DropdownMenuItem(
                   value: Locale('fr'),
-                  child: Text('French'),
+                  child: Text(AppLocalizations.getString(context, 'french')),
                 ),
                 DropdownMenuItem(
                   value: Locale('es'),
-                  child: Text('Spanish'),
+                  child: Text(AppLocalizations.getString(context, 'spanish')),
                 ),
               ],
               onChanged: (locale) {

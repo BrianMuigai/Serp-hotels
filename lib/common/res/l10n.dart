@@ -11,8 +11,11 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static getString(BuildContext context, String str) =>
+      AppLocalizations.of(context)?.translate(str) ?? str;
+
+  static LocalizationsDelegate<AppLocalizations> delegate(String lang) =>
+      _AppLocalizationsDelegate(lang);
 
   late Map<String, String> _localizedStrings;
 
@@ -35,12 +38,13 @@ class AppLocalizations {
 
 class _AppLocalizationsDelegate
     extends LocalizationsDelegate<AppLocalizations> {
-  const _AppLocalizationsDelegate();
+  final String languageCode;
+
+  _AppLocalizationsDelegate(this.languageCode);
 
   @override
-  bool isSupported(Locale locale) {
-    return ['en', 'fr', 'es'].contains(locale.languageCode);
-  }
+  bool isSupported(Locale locale) =>
+      ['en', 'es', 'fr'].contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) async {

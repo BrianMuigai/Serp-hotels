@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
 import 'package:buenro_hotels/features/favourites/presentation/widgets/favourites_list.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
@@ -25,7 +25,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppStrings.getString(context, 'favourites'))),
+      appBar: AppBar(
+          title: Text(AppLocalizations.getString(context, 'favourites'))),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: BlocListener<FavouritesBloc, FavouritesState>(
@@ -35,7 +36,8 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                     context: context,
                     builder: (context) {
                       return Center(
-                        child: Text(AppStrings.getString(context, state.error)),
+                        child: Text(
+                            AppLocalizations.getString(context, state.error)),
                       );
                     });
               } else if (state is LoadFavouritesSuccess ||

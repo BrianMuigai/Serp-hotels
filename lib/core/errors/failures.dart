@@ -1,4 +1,3 @@
-import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/core/api_client/models/server_error.dart';
 import 'package:equatable/equatable.dart';
 
