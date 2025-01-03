@@ -6,3 +6,9 @@ abstract class AccountEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ChangeLanguageEvent extends AccountEvent {
+  final String langCode;
+
+  const ChangeLanguageEvent({required this.langCode});
+}

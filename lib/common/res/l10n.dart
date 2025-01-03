@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:buenro_hotels/core/di/injector.dart';
+import 'package:buenro_hotels/core/storage/storage_preference_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,8 +16,8 @@ class AppLocalizations {
   static getString(BuildContext context, String str) =>
       AppLocalizations.of(context)?.translate(str) ?? str;
 
-  static LocalizationsDelegate<AppLocalizations> delegate(String lang) =>
-      _AppLocalizationsDelegate(lang);
+  static LocalizationsDelegate<AppLocalizations> delegate() =>
+      _AppLocalizationsDelegate();
 
   late Map<String, String> _localizedStrings;
 
@@ -38,9 +40,13 @@ class AppLocalizations {
 
 class _AppLocalizationsDelegate
     extends LocalizationsDelegate<AppLocalizations> {
-  final String languageCode;
+  late String languageCode;
 
-  _AppLocalizationsDelegate(this.languageCode);
+  _AppLocalizationsDelegate() {
+    languageCode = getIt<SharedPreferencesManager>()
+            .getString(SharedPreferencesManager.language) ??
+        'en';
+  }
 
   @override
   bool isSupported(Locale locale) =>

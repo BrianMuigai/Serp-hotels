@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:buenro_hotels/common/helpers/app_router.dart';
 import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/common/notifiers/locale_provider.dart';
@@ -19,8 +21,11 @@ void main() async {
     await dotenv.load(fileName: "env/.dev.env");
   }
   await configureDependencies();
+  final localeProvider = LocaleProvider();
+  localeProvider.loadLocale();
+
   runApp(ChangeNotifierProvider(
-    create: (_) => LocaleProvider(),
+    create: (_) => localeProvider,
     child: MyApp(),
   ));
 }
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
         title: AppLocalizations.getString(context, 'appName'),
         routerConfig: _appRouter.config(),
         localizationsDelegates: [
-          AppLocalizations.delegate('en'), // Pass the default language
+          AppLocalizations.delegate(),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate

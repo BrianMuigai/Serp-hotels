@@ -6,6 +6,7 @@ class SharedPreferencesManager {
   final SharedPreferences _sharedPreferences;
 
   static String favourites = 'favourites';
+  static String language = 'language';
 
   SharedPreferencesManager(this._sharedPreferences);
 
