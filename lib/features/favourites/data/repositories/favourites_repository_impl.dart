@@ -1,4 +1,3 @@
-import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/core/errors/failures.dart';
 import 'package:buenro_hotels/features/favourites/data/datasources/favourites_local_datasource.dart';
 import 'package:buenro_hotels/features/favourites/domain/repositories/favourites_repository.dart';
@@ -23,7 +22,7 @@ class FavouritesRepositoryImpl implements FavouritesRepository {
       PropertyModel model) async {
     final favs = await _localDatasource.addFavourite(model);
     if (favs != null) return Right(favs);
-    return Left(GeneralFailure(error: AppStrings.unableToAddToFavs));
+    return Left(GeneralFailure(error: 'unableToAddToFavs'));
   }
 
   @override

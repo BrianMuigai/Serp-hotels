@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +63,7 @@ class _FullImageScreenState extends State<FullImageScreen> {
                         builder: (BuildContext context) {
                           return AlertDialog.adaptive(
                             title: Text(
-                              AppStrings.error,
+                              AppLocalizations.getString(context, 'error'),
                               style: TextStyle(
                                   color: Colors.redAccent,
                                   fontWeight: FontWeight.w500),

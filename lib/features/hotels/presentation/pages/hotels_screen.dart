@@ -1,7 +1,8 @@
 // hotels.dart
 import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/res/colors.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
 import 'package:buenro_hotels/common/utils/debouncer.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
@@ -60,12 +61,11 @@ class _HotelsScreenState extends State<HotelsScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
             child: Text(
-              AppStrings.hotelsHeader,
+              AppLocalizations.getString(context, 'hotelsHeader'),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
               ),
             ),
           ),
@@ -80,15 +80,15 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Colors.grey[200],
+                      color:
+                          isDarkTheme() ? Colors.grey[700] : Colors.grey[200],
                     ),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search,
-                            color: Colors.black), // Search icon
+                        prefixIcon: Icon(Icons.search), // Search icon
                         hintText:
-                            '${AppStrings.anywhere} | ${AppStrings.anytime}', // Placeholder combining both strings
-                        hintStyle: TextStyle(color: Colors.black, fontSize: 16),
+                            '${AppLocalizations.getString(context, 'anywhere')} | ${AppLocalizations.getString(context, 'anytime')}', // Placeholder combining both strings
+                        hintStyle: TextStyle(fontSize: 16),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         border: OutlineInputBorder(
@@ -96,9 +96,11 @@ class _HotelsScreenState extends State<HotelsScreen> {
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Colors.grey[200], // Background color
+                        fillColor: isDarkTheme()
+                            ? Colors.grey[700]
+                            : Colors.grey[200], // Background color
                       ),
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: TextStyle(fontSize: 16),
                       // initialValue: queryParams.q,
                       onChanged: (value) {
                         queryParams = queryParams.copyWith(q: value);
@@ -118,11 +120,12 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog.adaptive(
-                              title: Text(AppStrings.appName),
-                              content: Text(AppStrings.notYetImplemented),
+                              title: Text(AppLocalizations.getString(
+                                  context, 'appName')),
+                              content: Text(AppLocalizations.getString(
+                                  context, 'notYetImplemented')),
                             ));
                   },
-                  color: Colors.black,
                 ),
               ],
             ),
@@ -130,7 +133,8 @@ class _HotelsScreenState extends State<HotelsScreen> {
           const SizedBox(height: 10),
           BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
             if (state is LoadingMore || state is HotelsLoadingState) {
-              return LinearProgressIndicator(color: Colors.grey[200]);
+              return LinearProgressIndicator(
+                  color: isDarkTheme() ? Colors.grey[700] : Colors.grey[200]);
             }
             return const SizedBox.shrink();
           }),

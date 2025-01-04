@@ -1,4 +1,3 @@
-import 'package:buenro_hotels/common/res/strings.dart';
 import 'package:buenro_hotels/core/api_client/models/server_error.dart';
 import 'package:equatable/equatable.dart';
 
@@ -15,23 +14,22 @@ class ServerFailure extends Failure {
   const ServerFailure({this.badResponse});
 
   @override
-  List<Object?> get props =>
-      [badResponse?.getErrorMessage() ?? AppStrings.serverFailed];
+  List<Object?> get props => [badResponse?.getErrorMessage() ?? 'serverFailed'];
 
   @override
   String toString() {
-    return badResponse?.getErrorMessage() ?? AppStrings.somethingWentWrong;
+    return badResponse?.getErrorMessage() ?? 'somethingWentWrong';
   }
 }
 
 class CacheFailure extends Failure {
   @override
-  List<Object?> get props => [AppStrings.cacheFailure];
+  List<Object?> get props => ['cacheFailure'];
 }
 
 class ConnectionFailure extends Failure {
   @override
-  List<Object?> get props => [AppStrings.failedToConnectToNetwork];
+  List<Object?> get props => ['failedToConnectToNetwork'];
 }
 
 class ClientFailure extends Failure {

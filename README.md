@@ -74,6 +74,16 @@ To get started with the project, follow these steps:
     ```bash
     flutter pub get
 
+- To Generate json-serialized files:- 
+
+    ```bash
+    dart run build_runner build
+
+or watch for changes and build on save by
+
+    dart run build_runner watch --delete-conflicting-outputs
+    
+
 ### Environment Configuration
 
 The project supports two environments which are autoloaded on launch depending on the build type: ***staging*** and ***Production***. To configure the environment:-

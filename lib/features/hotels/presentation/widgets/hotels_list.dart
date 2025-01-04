@@ -1,5 +1,5 @@
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
-import 'package:buenro_hotels/common/res/strings.dart';
+import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
@@ -32,7 +32,7 @@ class HotelsList extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  state.error,
+                  AppLocalizations.getString(context, state.error),
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.red),
                 ),
@@ -55,7 +55,8 @@ class HotelsList extends StatelessWidget {
             hotels = hotelsBloc.hotels;
           }
           if (hotels.isEmpty) {
-            return Center(child: Text(AppStrings.noData));
+            return Center(
+                child: Text(AppLocalizations.getString(context, 'noData')));
           }
           return ListView.separated(
             controller: controller,
@@ -65,7 +66,8 @@ class HotelsList extends StatelessWidget {
             itemBuilder: (context, index) => PropertyCard(hotel: hotels[index]),
           );
         }
-        return Center(child: Text(AppStrings.noData));
+        return Center(
+            child: Text(AppLocalizations.getString(context, 'noData')));
       }),
     );
   }
