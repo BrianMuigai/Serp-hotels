@@ -1,6 +1,7 @@
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
 import 'package:buenro_hotels/core/errors/failures.dart';
+import 'package:buenro_hotels/core/storage/storage_preference_manager.dart';
 import 'package:buenro_hotels/features/hotels/data/models/query_hotel_model.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/domain/repositories/hotels_repository.dart';
@@ -12,14 +13,17 @@ import 'package:mockito/mockito.dart';
 
 import 'list_hotels_usecase_test.mocks.dart';
 
-@GenerateMocks([HotelsRepository])
+@GenerateMocks([HotelsRepository, SharedPreferencesManager])
 void main() {
   late MockHotelsRepository mockHotelsRepository;
+  late MockSharedPreferencesManager mockSharedPreferencesManager;
   late ListHotelsUsecase listHotelsUsecase;
 
   setUp(() {
     mockHotelsRepository = MockHotelsRepository();
-    listHotelsUsecase = ListHotelsUsecase(mockHotelsRepository);
+    mockSharedPreferencesManager = MockSharedPreferencesManager();
+    listHotelsUsecase =
+        ListHotelsUsecase(mockHotelsRepository, mockSharedPreferencesManager);
   });
 
   test('should return a list of hotels when the repository call is successful',

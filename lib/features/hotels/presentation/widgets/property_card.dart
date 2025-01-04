@@ -1,3 +1,4 @@
+import 'package:buenro_hotels/common/res/colors.dart';
 import 'package:buenro_hotels/features/favourites/presentation/bloc/favourites_bloc.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/presentation/widgets/image_slider_corousel.dart';
@@ -88,18 +89,15 @@ class _PropertyCardState extends State<PropertyCard> {
                 children: [
                   Text(
                     widget.hotel.name,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5),
                   Text(
                     widget.hotel.totalRate?.lowest ?? '-',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.grey[700],
+                      color:
+                          isDarkTheme() ? Colors.grey[400] : Colors.grey[700],
                     ),
                   ),
                   SizedBox(height: 5),
@@ -107,7 +105,10 @@ class _PropertyCardState extends State<PropertyCard> {
                     children: [
                       Text(
                         '${widget.hotel.checkInTime ?? ''} - ${widget.hotel.checkOutTime ?? ''}',
-                        style: TextStyle(color: Colors.grey[700]),
+                        style: TextStyle(
+                            color: isDarkTheme()
+                                ? Colors.grey[400]
+                                : Colors.grey[700]),
                       ),
                       Spacer(),
                       BlocBuilder<FavouritesBloc, FavouritesState>(

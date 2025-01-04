@@ -34,7 +34,7 @@ class AccountScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(AppLocalizations.getString(context, 'settings')),
+                Text(AppLocalizations.getString(context, 'language')),
                 SizedBox(height: 20),
                 state is ChangeLanguageError
                     ? Column(

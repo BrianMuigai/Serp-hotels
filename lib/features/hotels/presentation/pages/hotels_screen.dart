@@ -1,6 +1,7 @@
 // hotels.dart
 import 'package:auto_route/auto_route.dart';
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
+import 'package:buenro_hotels/common/res/colors.dart';
 import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/common/utils/date_utils.dart';
 import 'package:buenro_hotels/common/utils/debouncer.dart';
@@ -65,7 +66,6 @@ class _HotelsScreenState extends State<HotelsScreen> {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
               ),
             ),
           ),
@@ -80,15 +80,15 @@ class _HotelsScreenState extends State<HotelsScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Colors.grey[200],
+                      color:
+                          isDarkTheme() ? Colors.grey[700] : Colors.grey[200],
                     ),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search,
-                            color: Colors.black), // Search icon
+                        prefixIcon: Icon(Icons.search), // Search icon
                         hintText:
                             '${AppLocalizations.getString(context, 'anywhere')} | ${AppLocalizations.getString(context, 'anytime')}', // Placeholder combining both strings
-                        hintStyle: TextStyle(color: Colors.black, fontSize: 16),
+                        hintStyle: TextStyle(fontSize: 16),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         border: OutlineInputBorder(
@@ -96,9 +96,11 @@ class _HotelsScreenState extends State<HotelsScreen> {
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Colors.grey[200], // Background color
+                        fillColor: isDarkTheme()
+                            ? Colors.grey[700]
+                            : Colors.grey[200], // Background color
                       ),
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: TextStyle(fontSize: 16),
                       // initialValue: queryParams.q,
                       onChanged: (value) {
                         queryParams = queryParams.copyWith(q: value);
@@ -124,7 +126,6 @@ class _HotelsScreenState extends State<HotelsScreen> {
                                   context, 'notYetImplemented')),
                             ));
                   },
-                  color: Colors.black,
                 ),
               ],
             ),
@@ -132,7 +133,8 @@ class _HotelsScreenState extends State<HotelsScreen> {
           const SizedBox(height: 10),
           BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
             if (state is LoadingMore || state is HotelsLoadingState) {
-              return LinearProgressIndicator(color: Colors.grey[200]);
+              return LinearProgressIndicator(
+                  color: isDarkTheme() ? Colors.grey[700] : Colors.grey[200]);
             }
             return const SizedBox.shrink();
           }),

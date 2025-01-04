@@ -116,8 +116,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i974.HotelsRepository>(
         () => _i224.HotelsRepositoryImpl(gh<_i996.HotelsRemoteDatasource>()));
-    gh.lazySingleton<_i873.ListHotelsUsecase>(
-        () => _i873.ListHotelsUsecase(gh<_i974.HotelsRepository>()));
+    gh.lazySingleton<_i873.ListHotelsUsecase>(() => _i873.ListHotelsUsecase(
+          gh<_i974.HotelsRepository>(),
+          gh<_i934.SharedPreferencesManager>(),
+        ));
     gh.factory<_i179.HotelsBloc>(
         () => _i179.HotelsBloc(gh<_i873.ListHotelsUsecase>()));
     return this;
