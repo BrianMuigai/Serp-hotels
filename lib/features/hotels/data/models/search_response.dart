@@ -140,17 +140,10 @@ class BrandChild {
     required this.name,
   });
 
-  factory BrandChild.fromJson(Map<String, dynamic> json) {
-    return BrandChild(
-      id: json['id'],
-      name: json['name'],
-    );
-  }
+  factory BrandChild.fromJson(Map<String, dynamic> json) =>
+      _$BrandChildFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-      };
+  Map<String, dynamic> toJson() => _$BrandChildToJson(this);
 }
 
 @JsonSerializable()
