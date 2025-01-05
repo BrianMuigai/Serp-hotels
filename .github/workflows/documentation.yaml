@@ -3,9 +3,7 @@ name: Generate Documentation
 # Triggers the workflow on pull request events but only for the main branch
 # Build is triggered with successful push of a new Tag (No need to initiate the build manually via github)
 on:
-  pull_request:
-    types:
-      - opened
+  push:
     branches:
       - main
 
