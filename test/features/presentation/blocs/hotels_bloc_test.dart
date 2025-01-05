@@ -1,4 +1,5 @@
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
+import 'package:buenro_hotels/core/storage/storage_preference_manager.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/domain/usecases/list_hotels_usecase.dart';
 import 'package:buenro_hotels/features/hotels/presentation/bloc/hotels_bloc.dart';
@@ -9,14 +10,18 @@ import 'package:mockito/mockito.dart';
 
 import 'hotels_bloc_test.mocks.dart';
 
-@GenerateMocks([ListHotelsUsecase])
+@GenerateMocks([ListHotelsUsecase, SharedPreferencesManager])
 void main() {
   late MockListHotelsUsecase mockUsecase;
+  late MockSharedPreferencesManager mockSharedPreferencesManager;
   late HotelsBloc bloc;
 
   setUp(() {
     mockUsecase = MockListHotelsUsecase();
-    bloc = HotelsBloc(mockUsecase);
+    mockSharedPreferencesManager = MockSharedPreferencesManager();
+    when(mockSharedPreferencesManager.getString('language'))
+        .thenAnswer((_) => 'en');
+    bloc = HotelsBloc(mockUsecase, mockSharedPreferencesManager);
   });
   test('HotelsBloc should emit correct states', () {
     final params = GetHotelsParams(

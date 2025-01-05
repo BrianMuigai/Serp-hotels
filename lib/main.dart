@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:buenro_hotels/common/helpers/app_router.dart';
 import 'package:buenro_hotels/common/res/l10n.dart';
 import 'package:buenro_hotels/common/notifiers/locale_provider.dart';

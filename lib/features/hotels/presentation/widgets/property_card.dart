@@ -60,6 +60,7 @@ class _PropertyCardState extends State<PropertyCard> {
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.7),
                       borderRadius: BorderRadius.circular(5),
                     ),

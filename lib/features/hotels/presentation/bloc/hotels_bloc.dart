@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:buenro_hotels/common/helpers/base_usecase.dart';
+import 'package:buenro_hotels/core/storage/storage_preference_manager.dart';
 import 'package:buenro_hotels/features/hotels/data/models/search_response.dart';
 import 'package:buenro_hotels/features/hotels/domain/usecases/list_hotels_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -12,11 +13,13 @@ part 'hotels_state.dart';
 
 @injectable
 class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
+  final SharedPreferencesManager _preferencesManager;
   final ListHotelsUsecase _listHotelsUsecase;
   final List<PropertyModel> hotels = [];
   late SerpApiPagination pagination;
 
-  HotelsBloc(this._listHotelsUsecase) : super(HotelsInitial()) {
+  HotelsBloc(this._listHotelsUsecase, this._preferencesManager)
+      : super(HotelsInitial()) {
     on<ListHotelsEvent>(_listHotels);
     on<LoadMoreHotelsEvent>(_loadMore);
   }
@@ -24,7 +27,9 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   FutureOr<void> _listHotels(
       ListHotelsEvent event, Emitter<HotelsState> emit) async {
     emit(HotelsLoadingState());
-    final response = await _listHotelsUsecase.call(event.params);
+    final params = event.params.copyWith(
+        hl: _preferencesManager.getString(SharedPreferencesManager.language));
+    final response = await _listHotelsUsecase.call(params);
     emit(response.fold(
       (error) => ListHotelsError(error: error.toString()),
       (response) {
