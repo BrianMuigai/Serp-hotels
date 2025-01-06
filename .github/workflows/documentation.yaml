@@ -28,7 +28,7 @@ jobs:
         run: flutter pub get
 
       - name: Generate documentation
-        run: dart pub global run dartdoc
+        run: dart pub global run dart doc .
 
       - name: Commit and deploy to gh-pages
         run: |
