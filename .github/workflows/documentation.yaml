@@ -3,7 +3,7 @@ name: Deploy Flutter Docs
 on:
   push:
     branches:
-      - main
+      - main  # Replace with your default branch
 
 permissions:
   contents: write
@@ -23,10 +23,15 @@ jobs:
         run: dart pub get
 
       - name: Install dartdoc
-        run: dart pub global activate dartdoc
+        run: |
+          dart pub global activate dartdoc
+          echo "::add-path::${HOME}/.pub-cache/bin"
+
+      - name: Verify dartdoc installation
+        run: dartdoc --version
 
       - name: Generate documentation
-        run: dart pub global run dartdoc
+        run: dartdoc
 
       - name: Commit and deploy to gh-pages
         run: |
