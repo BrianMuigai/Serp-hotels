@@ -11,14 +11,21 @@ jobs:
   generate_documentation:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      # Setup the flutter environment.
+      - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Set up Dart
-        uses: dart-lang/setup-dart@v1
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+          flutter-version: '3.27.1'
+          cache: true
+          cache-key: flutter # optional, change this to force refresh cache
+          cache-path: ${{ runner.tool_cache }}/flutter
 
-      - name: Install dependencies
-        run: dart pub get
+      - name: Install dependencies.
+        run: flutter pub get
 
       - name: Generate documentation
         run: dart pub global run dartdoc
