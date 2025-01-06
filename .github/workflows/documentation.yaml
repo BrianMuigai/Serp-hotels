@@ -1,42 +1,41 @@
-name: Generate Documentation
+name: Deploy Flutter Docs
 
-# Triggers the workflow on pull request events but only for the main branch
-# Build is triggered with successful push of a new Tag (No need to initiate the build manually via github)
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  generate_documentation:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # Setup the flutter environment.
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
-          flutter-version: '3.27.1'
-          cache: true
-          cache-key: flutter # optional, change this to force refresh cache
-          cache-path: ${{ runner.tool_cache }}/flutter
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
 
-      - name: Install dependencies.
-        run: flutter pub get
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Install dartdoc
+        run: dart pub global activate dartdoc
 
       - name: Generate documentation
-        run: dart pub global run dart doc .
+        run: dart pub global run dartdoc
 
       - name: Commit and deploy to gh-pages
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git checkout --orphan gh-pages
-          git rm -rf .
+          git fetch origin gh-pages
+          git switch gh-pages || git checkout --orphan gh-pages
+          git rm -rf ./*
           cp -R doc/api/* .
           git add .
-          git commit -m "Update Flutter documentation"
-          git push origin gh-pages --force
+          git commit -m "Update Flutter documentation" || echo "No changes to commit"
+          git push origin gh-pages
