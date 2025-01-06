@@ -2,7 +2,7 @@
 
 ## Overview
 
-[Watch Preview Video](doc/api/serp-hotels-preview.mp4)
+[Watch Preview Video](serp-hotels-preview.mp4)
 
 Serp Hotels is a Dart-based hotel listing application that allows users to search, view, and manage their favorite hotels. The application utilizes various libraries and frameworks to provide a seamless user experience.
 The project follows the principles of Clean Architecture, which emphasizes separation of concerns, making the codebase more maintainable, testable, and scalable. The architecture is divided into several layers, each with distinct responsibilities. The main layers are:
@@ -13,14 +13,14 @@ The project follows the principles of Clean Architecture, which emphasizes separ
 
 ```
 +---------------------+
-|  Presentation Layer  |
+|  Presentation Layer |
 |  (UI, Widgets,      |
-|  State Management)   |
+|  State Management)  |
 +---------------------+
           |
           v
 +---------------------+
-|     Domain Layer     |
+|     Domain Layer    |
 |  (Use Cases,        |
 |  Entities,          |
 |  Repositories)      |
@@ -28,10 +28,10 @@ The project follows the principles of Clean Architecture, which emphasizes separ
           |
           v
 +---------------------+
-|      Data Layer      |
+|      Data Layer     |
 |  (Repositories,     |
 |  Data Sources)      |
-|  (Shared Preferences)|
+| (Shared Preferences)|
 +---------------------+
 ```
 
