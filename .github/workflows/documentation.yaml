@@ -30,7 +30,7 @@ jobs:
       - name: Install dartdoc
         run: |
           flutter pub global activate dartdoc
-          echo "::add-path::${HOME}/.pub-cache/bin"
+          echo "${HOME}/.pub-cache/bin" >> $GITHUB_PATH
 
       - name: Verify dartdoc installation
         run: dartdoc --version
