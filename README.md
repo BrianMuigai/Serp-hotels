@@ -121,7 +121,6 @@ The project supports two environments which are autoloaded on launch depending o
 
 ## Api-Documentation
 
-for indepth walk around of the project, refer the following links. (on local machine and view with browser)
+for indepth walk around of the project, refer the following links. 
 
-- [Main Documentation](doc/api/index.html)
-- [Searchable documentation](doc/api/search.html)
+- [Main Documentation](https://brianmuigai.github.io/Serp-hotels/)
